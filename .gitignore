@@ -1,0 +1,27 @@
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Local configuration and secrets
+.env
+webhook.env
+config.yaml
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

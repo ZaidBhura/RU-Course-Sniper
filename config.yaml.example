@@ -1,0 +1,20 @@
+# Polling interval in seconds
+# Be respectful - 20 seconds is reasonable, don't go below 10 seconds
+poll_interval_seconds: 20
+
+# WebReg semester selection code
+# Format: [term][year] where term=1 (Spring), 7 (Fall), etc.
+# Example: 12026 = Spring 2026
+webreg_semester_selection: "12026"
+
+# List of index numbers to watch
+# You can specify indexes in two formats:
+# 1. Plain integer (just the index number)
+# 2. Object with index and optional label
+watch_indexes:
+  - index: 11643
+    label: "Preferred section"
+  - index: 12345
+    label: "Backup option"
+  # - 67890  # You can also use plain integers
+
