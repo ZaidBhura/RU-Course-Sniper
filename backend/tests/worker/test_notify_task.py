@@ -12,6 +12,7 @@ from unittest.mock import MagicMock, patch
 from cryptography.fernet import Fernet
 
 from app.services.notifier import SendResult
+from tests.worker.helpers import make_watched_index
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -22,18 +23,6 @@ def _fernet_key() -> str:
 
 def _encrypt(key: str, plaintext: str) -> bytes:
     return Fernet(key.encode()).encrypt(plaintext.encode())
-
-
-def _make_watched_index(index_number: int = 11643, semester_code: str = "12026", is_active: bool = True):
-    wi = MagicMock()
-    wi.id = uuid.uuid4()
-    wi.user_id = uuid.uuid4()
-    wi.tenant_id = uuid.uuid4()
-    wi.index_number = index_number
-    wi.semester_code = semester_code
-    wi.label = None
-    wi.is_active = is_active
-    return wi
 
 
 def _make_channel(channel_type: str, credential_blob: bytes):
@@ -58,14 +47,14 @@ def fernet_key():
 
 class TestDispatchNotificationDedup:
     def test_skips_when_already_notified(self, fake_r, fernet_key):
-        wi = _make_watched_index()
+        wi = make_watched_index()
         dedup_key = f"sniper:notified:{wi.user_id}:11643:12026"
         fake_r.set(dedup_key, "1")
 
         mock_session = MagicMock()
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.core.config.settings.FERNET_KEY", fernet_key):
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
@@ -78,7 +67,7 @@ class TestDispatchNotificationDedup:
         assert result["reason"] == "already_notified"
 
     def test_sets_dedup_key_after_success(self, fake_r, fernet_key):
-        wi = _make_watched_index()
+        wi = make_watched_index()
         creds = json.dumps({"webhook_url": "https://discord.com/api/webhooks/test"})
         channel = _make_channel("discord", _encrypt(fernet_key, creds))
 
@@ -86,7 +75,7 @@ class TestDispatchNotificationDedup:
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
         mock_session.execute.return_value.scalars.return_value.all.return_value = [channel]
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.worker.tasks.notify.enricher.get_course_detail", return_value=None), \
              patch("app.worker.tasks.notify.notifier.send_discord", return_value=SendResult(success=True)), \
@@ -102,7 +91,7 @@ class TestDispatchNotificationDedup:
         assert fake_r.get(dedup_key) == "1"
 
     def test_does_not_set_dedup_key_when_all_fail(self, fake_r, fernet_key):
-        wi = _make_watched_index()
+        wi = make_watched_index()
         creds = json.dumps({"webhook_url": "https://discord.com/api/webhooks/test"})
         channel = _make_channel("discord", _encrypt(fernet_key, creds))
 
@@ -110,7 +99,7 @@ class TestDispatchNotificationDedup:
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
         mock_session.execute.return_value.scalars.return_value.all.return_value = [channel]
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.worker.tasks.notify.enricher.get_course_detail", return_value=None), \
              patch("app.worker.tasks.notify.notifier.send_discord", return_value=SendResult(success=False, error="timeout")), \
@@ -128,11 +117,11 @@ class TestDispatchNotificationDedup:
 
 class TestDispatchNotificationGuards:
     def test_skips_inactive_watched_index(self, fake_r, fernet_key):
-        wi = _make_watched_index(is_active=False)
+        wi = make_watched_index(is_active=False)
         mock_session = MagicMock()
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx:
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
             mock_ctx.return_value.__exit__ = MagicMock(return_value=False)
@@ -147,7 +136,7 @@ class TestDispatchNotificationGuards:
         mock_session = MagicMock()
         mock_session.execute.return_value.scalar_one_or_none.return_value = None
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx:
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
             mock_ctx.return_value.__exit__ = MagicMock(return_value=False)
@@ -158,12 +147,12 @@ class TestDispatchNotificationGuards:
         assert result["status"] == "skipped"
 
     def test_skips_when_no_channels(self, fake_r, fernet_key):
-        wi = _make_watched_index()
+        wi = make_watched_index()
         mock_session = MagicMock()
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
         mock_session.execute.return_value.scalars.return_value.all.return_value = []
 
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx:
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
             mock_ctx.return_value.__exit__ = MagicMock(return_value=False)
@@ -177,7 +166,7 @@ class TestDispatchNotificationGuards:
 
 class TestDispatchNotificationLogging:
     def test_writes_notification_log_on_send(self, fake_r, fernet_key):
-        wi = _make_watched_index()
+        wi = make_watched_index()
         creds = json.dumps({"webhook_url": "https://discord.com/api/webhooks/test"})
         channel = _make_channel("discord", b"encrypted_blob_placeholder")
 
@@ -189,7 +178,7 @@ class TestDispatchNotificationLogging:
 
         # Patch decrypt_credential directly — avoids the module-level _fernet cache
         # in security.py which ignores settings.FERNET_KEY patches after first init.
-        with patch("app.worker.tasks.notify._get_redis", return_value=fake_r), \
+        with patch("app.worker.tasks.notify.get_worker_redis", return_value=fake_r), \
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.worker.tasks.notify.enricher.get_course_detail", return_value=None), \
              patch("app.worker.tasks.notify.notifier.send_discord", return_value=SendResult(success=True)), \

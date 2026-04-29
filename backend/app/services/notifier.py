@@ -1,10 +1,6 @@
 """Notification dispatch helpers for Discord and Pushover.
 
-Ported from legacy/notifier.py with the following changes:
-- Credentials are passed in explicitly (decrypted by caller from NotificationChannel.credential_blob)
-  rather than read from environment variables.
-- Never logs credential values — only channel_type and success/failure.
-- Returns structured result instead of just bool.
+Credentials are passed in explicitly — never read from env, never logged.
 """
 
 import logging
@@ -42,19 +38,17 @@ def build_webreg_url(index_number: int, semester_code: str) -> str:
 
 def _format_message(payload: NotificationPayload) -> str:
     lines = [f"🔗 **WebReg Link:** {payload.webreg_url}", ""]
+    label_suffix = f" ({payload.label})" if payload.label else ""
     detail = payload.course_detail
     if detail:
-        course_name = f"{detail.subject} {detail.course_number}: {detail.title}"
-        label_suffix = f" ({payload.label})" if payload.label else ""
         lines.append(f"**Index {payload.index_number}**{label_suffix}")
-        lines.append(f"**{course_name}**")
+        lines.append(f"**{detail.subject} {detail.course_number}: {detail.title}**")
         lines.append(f"Section: {detail.section}")
         if detail.instructors:
             lines.append(f"**Instructor(s):** {', '.join(detail.instructors)}")
         if detail.meeting_times:
             lines.append(f"**Meeting Times:** {' | '.join(detail.meeting_times)}")
     else:
-        label_suffix = f" ({payload.label})" if payload.label else ""
         lines.append(f"**Index:** {payload.index_number}{label_suffix}")
         lines.append("_Course details loading..._")
     return "\n".join(lines)

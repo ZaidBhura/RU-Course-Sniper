@@ -43,10 +43,8 @@ def store_course_details(
         logger.warning("store_course_details called with empty map for %s — skipping", semester_code)
         return
 
-    pipe = r.pipeline()
-    pipe.delete(key)
-    for index_number, detail in course_map.items():
-        pipe.hset(key, str(index_number), json.dumps({
+    mapping = {
+        str(index_number): json.dumps({
             "subject": detail.subject,
             "course_number": detail.course_number,
             "section": detail.section,
@@ -54,7 +52,12 @@ def store_course_details(
             "instructors": detail.instructors,
             "meeting_times": detail.meeting_times,
             "index_number": detail.index_number,
-        }))
+        })
+        for index_number, detail in course_map.items()
+    }
+    pipe = r.pipeline()
+    pipe.delete(key)
+    pipe.hset(key, mapping=mapping)
     pipe.expire(key, ttl_seconds)
     pipe.execute()
     logger.info("Stored %d course details in Redis for semester %s", len(course_map), semester_code)

@@ -11,17 +11,12 @@ Failure is non-fatal — notifications still fire with just the index number
 
 import logging
 
-import redis as redis_lib
-
 from app.core.config import settings
 from app.services import enricher, soc_client
 from app.worker.celery_app import celery_app
+from app.worker.db import get_worker_redis
 
 logger = logging.getLogger(__name__)
-
-
-def _get_redis() -> redis_lib.Redis:
-    return redis_lib.from_url(settings.REDIS_URL, decode_responses=True)
 
 
 @celery_app.task(
@@ -48,7 +43,7 @@ def refresh_course_cache(self, semester_code: str) -> dict:
             )
             return {"status": "empty", "count": 0}
 
-        r = _get_redis()
+        r = get_worker_redis()
         ttl = settings.ENRICH_INTERVAL_SECONDS + 100
         enricher.store_course_details(r, semester_code, course_map, ttl_seconds=ttl)
 

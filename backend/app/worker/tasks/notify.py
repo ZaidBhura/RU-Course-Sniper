@@ -16,23 +16,19 @@ import json
 import logging
 from datetime import datetime, timezone
 
-import redis as redis_lib
 from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.security import decrypt_credential
+from app.models.notification_channel import NotificationChannel
+from app.models.notification_log import NotificationLog
+from app.models.watched_index import WatchedIndex
 from app.services import enricher, notifier
 from app.services.notifier import NotificationPayload, build_webreg_url
 from app.worker.celery_app import celery_app
-from app.worker.db import get_worker_session
+from app.worker.db import NOTIFIED_KEY, get_worker_redis, get_worker_session
 
 logger = logging.getLogger(__name__)
-
-_NOTIFIED_KEY = "sniper:notified:{user_id}:{index_number}:{semester_code}"
-
-
-def _get_redis() -> redis_lib.Redis:
-    return redis_lib.from_url(settings.REDIS_URL, decode_responses=True)
 
 
 @celery_app.task(
@@ -48,14 +44,9 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
     Idempotent: a Redis dedup key prevents double-sending within the same open event.
     Retries up to 3 times on transient errors (network, DB unavailable).
     """
-    r = _get_redis()
+    r = get_worker_redis()
 
     with get_worker_session() as session:
-        from app.models.notification_channel import NotificationChannel
-        from app.models.notification_log import NotificationLog
-        from app.models.watched_index import WatchedIndex
-
-        # --- Load WatchedIndex ---
         wi = session.execute(
             select(WatchedIndex).where(WatchedIndex.id == watched_index_id)
         ).scalar_one_or_none()
@@ -65,13 +56,12 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             return {"status": "skipped", "reason": "watched_index_inactive"}
 
         user_id = str(wi.user_id)
-        dedup_key = _NOTIFIED_KEY.format(
+        dedup_key = NOTIFIED_KEY.format(
             user_id=user_id,
             index_number=index_number,
             semester_code=semester_code,
         )
 
-        # --- Dedup check ---
         if r.get(dedup_key):
             logger.info(
                 "dispatch_notification: already notified user=%s index=%d, skipping",
@@ -79,7 +69,6 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             )
             return {"status": "skipped", "reason": "already_notified"}
 
-        # --- Build notification payload ---
         course_detail = enricher.get_course_detail(r, semester_code, index_number)
         webreg_url = build_webreg_url(index_number, semester_code)
         payload = NotificationPayload(
@@ -90,7 +79,6 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             webreg_url=webreg_url,
         )
 
-        # --- Load active notification channels ---
         channels = session.execute(
             select(NotificationChannel).where(
                 NotificationChannel.user_id == wi.user_id,
@@ -105,7 +93,6 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             )
             return {"status": "skipped", "reason": "no_channels"}
 
-        # --- Send to each channel, log result ---
         now = datetime.now(tz=timezone.utc)
         any_success = False
 
@@ -113,14 +100,12 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             try:
                 result = _send_channel(channel, payload)
             except Exception as exc:
-                # Decryption failure or unexpected error — log and continue to next channel
                 logger.exception(
                     "dispatch_notification: error on channel %s for index=%d: %s",
                     channel.channel_type, index_number, exc,
                 )
                 result = notifier.SendResult(success=False, error=str(exc))
 
-            status = "sent" if result.success else "failed"
             if result.success:
                 any_success = True
 
@@ -132,7 +117,7 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
                 semester_code=semester_code,
                 channel_type=channel.channel_type,
                 event_type="open_notify",
-                delivery_status=status,
+                delivery_status="sent" if result.success else "failed",
                 error_message=result.error if not result.success else None,
                 course_subject=course_detail.subject if course_detail else None,
                 course_number=course_detail.course_number if course_detail else None,
@@ -141,7 +126,6 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
                 created_at=now,
             ))
 
-        # --- Set dedup key only after at least one successful send ---
         if any_success:
             r.set(dedup_key, "1")
         else:
@@ -157,14 +141,13 @@ def _send_channel(channel, payload: NotificationPayload) -> notifier.SendResult:
     """Decrypt credentials and send to the appropriate channel.
 
     SECURITY: credential_blob is decrypted here, in task memory only.
-    The plaintext value is never stored, logged, or passed to other functions
-    except the narrow send_discord / send_pushover call.
+    The plaintext is never stored, logged, or passed outside this function
+    except as individual kwargs to send_discord / send_pushover.
     """
     creds = json.loads(decrypt_credential(channel.credential_blob))
 
     if channel.channel_type == "discord":
-        webhook_url = creds["webhook_url"]
-        return notifier.send_discord(webhook_url, payload)
+        return notifier.send_discord(creds["webhook_url"], payload)
     elif channel.channel_type == "pushover":
         return notifier.send_pushover(creds["token"], creds["user_key"], payload)
     else:

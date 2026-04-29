@@ -1,12 +1,8 @@
 """Synchronous HTTP client for the Rutgers SOC (Schedule of Classes) API.
 
-Ported from legacy/soc_client.py with the following changes:
-- Exponential backoff now includes jitter to avoid thundering-herd retries
-- semester_code parameter replaces separate year/term/campus args (matches M1 schema)
-- Campus and term are derived from semester_code using Rutgers conventions:
-    semester_code format: {term}{year}  e.g. "12026" = term 1 (Spring), year 2026
-    term digit: 0=Winter, 1=Spring, 7=Summer, 9=Fall
-    campus defaults to "NB" (New Brunswick); can be overridden if needed
+semester_code format: {term}{year}  e.g. "12026" = term 1 (Spring), year 2026
+term digit: 0=Winter, 1=Spring, 7=Summer, 9=Fall
+campus defaults to "NB" (New Brunswick).
 """
 
 import logging

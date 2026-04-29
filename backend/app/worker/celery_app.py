@@ -31,12 +31,12 @@ celery_app.conf.update(
     beat_schedule={
         "poll-soc": {
             "task": "app.worker.tasks.poll.poll_soc",
-            "schedule": float(settings.POLL_INTERVAL_SECONDS),
+            "schedule": settings.POLL_INTERVAL_SECONDS,
             "args": (settings.SEMESTER_CODE,),
         },
         "refresh-course-cache": {
             "task": "app.worker.tasks.enrich.refresh_course_cache",
-            "schedule": float(settings.ENRICH_INTERVAL_SECONDS),
+            "schedule": settings.ENRICH_INTERVAL_SECONDS,
             "args": (settings.SEMESTER_CODE,),
         },
     },

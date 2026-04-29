@@ -10,10 +10,25 @@ The async engine in app/db/session.py is used exclusively by the FastAPI app.
 from contextlib import contextmanager
 from typing import Generator
 
+import redis as redis_lib
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.config import settings
+
+# Shared Redis connection pool — reused across task invocations in the same worker process.
+# redis.from_url() creates a new pool each call; a module-level pool avoids that churn.
+_redis_pool = redis_lib.ConnectionPool.from_url(settings.REDIS_URL, decode_responses=True)
+
+# Redis key template for per-user notification dedup.
+# Defined here (single source of truth) because both poll.py and notify.py use it:
+# poll.py deletes it on close_reset; notify.py checks/sets it on open.
+NOTIFIED_KEY = "sniper:notified:{user_id}:{index_number}:{semester_code}"
+
+
+def get_worker_redis() -> redis_lib.Redis:
+    """Return a Redis client backed by the shared module-level connection pool."""
+    return redis_lib.Redis(connection_pool=_redis_pool)
 
 # SYNC_DATABASE_URL must use postgresql+psycopg2:// driver prefix
 _engine = create_engine(
