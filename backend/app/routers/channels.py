@@ -3,6 +3,7 @@ import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_active_user
@@ -23,7 +24,6 @@ def _build_credential_json(channel_type: str, credential) -> str:
                 detail="discord channel requires webhook_url",
             )
         return json.dumps({"webhook_url": credential.webhook_url})
-    # pushover
     if not credential.token or not credential.user_key:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -54,18 +54,6 @@ async def create_channel(
     user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(NotificationChannel).where(
-            NotificationChannel.user_id == user.id,
-            NotificationChannel.channel_type == body.channel_type,
-        )
-    )
-    if result.scalar_one_or_none():
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"A {body.channel_type} channel already exists",
-        )
-
     blob = encrypt_credential(_build_credential_json(body.channel_type, body.credential))
     channel = NotificationChannel(
         tenant_id=user.tenant_id,
@@ -74,7 +62,14 @@ async def create_channel(
         credential_blob=blob,
     )
     db.add(channel)
-    await db.commit()
+    try:
+        await db.commit()
+    except IntegrityError:
+        await db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"A {body.channel_type} channel already exists",
+        )
     await db.refresh(channel)
     return channel
 

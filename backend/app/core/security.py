@@ -10,8 +10,6 @@ from jose import JWTError, jwt
 
 from app.core.config import settings
 
-# --- Credential encryption (Fernet) ---
-
 # Lazily-initialised so tests can patch settings.FERNET_KEY before first use.
 _fernet: Fernet | None = None
 
@@ -33,8 +31,6 @@ def decrypt_credential(ciphertext: bytes) -> str:
     return _get_fernet().decrypt(ciphertext).decode()
 
 
-# --- Password hashing (argon2) ---
-
 _ph = PasswordHasher()
 
 
@@ -48,8 +44,6 @@ def verify_password(plaintext: str, hashed: str) -> bool:
     except VerifyMismatchError:
         return False
 
-
-# --- JWT (access tokens) ---
 
 def create_access_token(sub: str, tenant_id: str, is_superuser: bool) -> str:
     expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -67,8 +61,6 @@ def decode_access_token(token: str) -> dict:
     except JWTError as exc:
         raise ValueError("Invalid token") from exc
 
-
-# --- Refresh tokens (opaque UUIDs stored in Redis) ---
 
 REFRESH_KEY_PREFIX = "sniper:refresh:"
 

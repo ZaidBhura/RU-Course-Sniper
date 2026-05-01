@@ -5,8 +5,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ChannelCredential(BaseModel):
-    # discord:  {"webhook_url": "..."}
-    # pushover: {"token": "...", "user_key": "..."}
     webhook_url: str | None = None
     token: str | None = None
     user_key: str | None = None

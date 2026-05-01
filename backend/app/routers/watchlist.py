@@ -2,6 +2,7 @@ import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_active_user
@@ -32,16 +33,6 @@ async def create_watched_index(
     user: User = Depends(get_current_active_user),
     db: AsyncSession = Depends(get_db),
 ):
-    result = await db.execute(
-        select(WatchedIndex).where(
-            WatchedIndex.user_id == user.id,
-            WatchedIndex.index_number == body.index_number,
-            WatchedIndex.semester_code == body.semester_code,
-        )
-    )
-    if result.scalar_one_or_none():
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Already watching this index")
-
     wi = WatchedIndex(
         tenant_id=user.tenant_id,
         user_id=user.id,
@@ -50,7 +41,11 @@ async def create_watched_index(
         semester_code=body.semester_code,
     )
     db.add(wi)
-    await db.commit()
+    try:
+        await db.commit()
+    except IntegrityError:
+        await db.rollback()
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Already watching this index")
     await db.refresh(wi)
     return wi
 

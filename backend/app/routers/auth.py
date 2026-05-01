@@ -23,11 +23,24 @@ from app.schemas.user import UserOut
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
+_REFRESH_TTL = settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400
+
 
 def _derive_slug(email: str) -> str:
     local = email.split("@")[0]
     slug = re.sub(r"[^a-z0-9]+", "-", local.lower()).strip("-") or "user"
     return f"{slug}-{uuid.uuid4().hex[:8]}"
+
+
+async def _issue_tokens(user: User, redis) -> TokenResponse:
+    access_token = create_access_token(
+        sub=str(user.id),
+        tenant_id=str(user.tenant_id),
+        is_superuser=user.is_superuser,
+    )
+    refresh = make_refresh_token()
+    await redis.set(refresh_token_key(refresh), str(user.id), ex=_REFRESH_TTL)
+    return TokenResponse(access_token=access_token, refresh_token=refresh)
 
 
 @router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
@@ -56,15 +69,7 @@ async def register(
     await db.commit()
     await db.refresh(user)
 
-    access_token = create_access_token(
-        sub=str(user.id),
-        tenant_id=str(user.tenant_id),
-        is_superuser=user.is_superuser,
-    )
-    refresh = make_refresh_token()
-    await redis.set(refresh_token_key(refresh), str(user.id), ex=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400)
-
-    return TokenResponse(access_token=access_token, refresh_token=refresh)
+    return await _issue_tokens(user, redis)
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -84,15 +89,7 @@ async def login(
     if not user.is_active:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Account deactivated")
 
-    access_token = create_access_token(
-        sub=str(user.id),
-        tenant_id=str(user.tenant_id),
-        is_superuser=user.is_superuser,
-    )
-    refresh = make_refresh_token()
-    await redis.set(refresh_token_key(refresh), str(user.id), ex=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400)
-
-    return TokenResponse(access_token=access_token, refresh_token=refresh)
+    return await _issue_tokens(user, redis)
 
 
 @router.post("/refresh", response_model=TokenResponse)
@@ -112,10 +109,11 @@ async def refresh_token(
         await redis.delete(key)
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid refresh token")
 
-    # Rotate: old token deleted, new one issued
-    await redis.delete(key)
     new_refresh = make_refresh_token()
-    await redis.set(refresh_token_key(new_refresh), str(user.id), ex=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400)
+    async with redis.pipeline(transaction=True) as pipe:
+        await pipe.delete(key)
+        await pipe.set(refresh_token_key(new_refresh), str(user.id), ex=_REFRESH_TTL)
+        await pipe.execute()
 
     access_token = create_access_token(
         sub=str(user.id),
