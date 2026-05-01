@@ -37,4 +37,4 @@ class Tenant(Base, TimestampMixin):
         Boolean, nullable=False, default=True, server_default=text("TRUE")
     )
 
-    users: Mapped[list[User]] = relationship("User", back_populates="tenant")
+    users: Mapped[list[User]] = relationship("User", back_populates="tenant", passive_deletes=True)

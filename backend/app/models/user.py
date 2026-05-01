@@ -52,8 +52,8 @@ class User(Base, TimestampMixin):
 
     tenant: Mapped[Tenant] = relationship("Tenant", back_populates="users")
     watched_indexes: Mapped[list[WatchedIndex]] = relationship(
-        "WatchedIndex", back_populates="user"
+        "WatchedIndex", back_populates="user", passive_deletes=True
     )
     notification_channels: Mapped[list[NotificationChannel]] = relationship(
-        "NotificationChannel", back_populates="user"
+        "NotificationChannel", back_populates="user", passive_deletes=True
     )

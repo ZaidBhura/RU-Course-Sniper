@@ -145,8 +145,8 @@ async def test_cascade_delete_tenant(db: AsyncSession) -> None:
 
     await db.delete(tenant)
     await db.flush()
+    db.expire_all()  # force re-query so DB-level cascade is visible
 
-    # All child rows must be gone
     assert await db.get(User, user_id) is None
     assert await db.get(WatchedIndex, wi_id) is None
 

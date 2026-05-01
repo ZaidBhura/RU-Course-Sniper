@@ -32,6 +32,10 @@ class Settings(BaseSettings):
 
     # Auth
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ALGORITHM: str = "HS256"
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    # Comma-separated list of allowed CORS origins
+    ALLOWED_ORIGINS: str = "http://localhost:3000"
 
     # Application
     ENVIRONMENT: str = "development"  # "development" | "staging" | "production"

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -9,12 +9,9 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health")
 async def health_check(db: AsyncSession = Depends(get_db)) -> dict:
-    """Liveness + readiness probe.
-
-    Returns 200 if the application is running and the database is reachable.
-    Returns 500 (via unhandled exception → FastAPI default handler) if the DB
-    connection fails — a deliberate fail-fast so load balancers remove the
-    instance from rotation.
-    """
-    await db.execute(text("SELECT 1"))
+    """Liveness + readiness probe — returns 500 when DB is unreachable."""
+    try:
+        await db.execute(text("SELECT 1"))
+    except Exception:
+        raise HTTPException(status_code=500, detail="database unreachable")
     return {"status": "ok", "db": "reachable"}

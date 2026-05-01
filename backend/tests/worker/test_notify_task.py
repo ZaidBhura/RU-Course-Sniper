@@ -79,7 +79,8 @@ class TestDispatchNotificationDedup:
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.worker.tasks.notify.enricher.get_course_detail", return_value=None), \
              patch("app.worker.tasks.notify.notifier.send_discord", return_value=SendResult(success=True)), \
-             patch("app.core.config.settings.FERNET_KEY", fernet_key):
+             patch("app.core.config.settings.FERNET_KEY", fernet_key), \
+             patch("app.core.security._fernet", None):
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
             mock_ctx.return_value.__exit__ = MagicMock(return_value=False)
 
@@ -103,7 +104,8 @@ class TestDispatchNotificationDedup:
              patch("app.worker.tasks.notify.get_worker_session") as mock_ctx, \
              patch("app.worker.tasks.notify.enricher.get_course_detail", return_value=None), \
              patch("app.worker.tasks.notify.notifier.send_discord", return_value=SendResult(success=False, error="timeout")), \
-             patch("app.core.config.settings.FERNET_KEY", fernet_key):
+             patch("app.core.config.settings.FERNET_KEY", fernet_key), \
+             patch("app.core.security._fernet", None):
             mock_ctx.return_value.__enter__ = MagicMock(return_value=mock_session)
             mock_ctx.return_value.__exit__ = MagicMock(return_value=False)
 
