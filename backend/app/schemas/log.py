@@ -13,7 +13,6 @@ class NotificationLogOut(BaseModel):
     channel_type: str
     event_type: str
     delivery_status: str
-    error_message: str | None
     course_subject: str | None
     course_number: str | None
     course_title: str | None

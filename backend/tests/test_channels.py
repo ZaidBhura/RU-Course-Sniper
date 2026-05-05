@@ -126,6 +126,20 @@ async def test_delete_not_found(client: AsyncClient):
 
 
 @pytest.mark.asyncio
+async def test_create_discord_invalid_webhook_url(client: AsyncClient):
+    headers = await _auth_headers(client)
+    r = await client.post(
+        "/api/channels/",
+        json={
+            "channel_type": "discord",
+            "credential": {"webhook_url": "https://evil.com/steal"},
+        },
+        headers=headers,
+    )
+    assert r.status_code == 422
+
+
+@pytest.mark.asyncio
 async def test_credential_not_exposed_in_list(client: AsyncClient):
     headers = await _auth_headers(client)
     await client.post(
