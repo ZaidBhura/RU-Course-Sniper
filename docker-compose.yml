@@ -97,5 +97,25 @@ services:
       - ./backend:/app
     command: celery -A app.worker.celery_app beat --loglevel=info
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      # Exposed to browser — used by Axios for direct API calls
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api
+      # Server-only — used by Route Handlers (server-to-server via Docker network, no CORS)
+      API_INTERNAL_URL: http://backend:8000/api
+      NODE_ENV: development
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      # Prevent host node_modules from shadowing container-installed modules
+      - /app/node_modules
+    stdin_open: true
+
 volumes:
   postgres_data:

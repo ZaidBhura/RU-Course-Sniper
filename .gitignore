@@ -25,3 +25,10 @@ config.yaml
 .idea/
 .DS_Store
 Thumbs.db
+
+# Frontend
+frontend/.next/
+frontend/node_modules/
+frontend/.env.local
+frontend/playwright-report/
+frontend/test-results/
