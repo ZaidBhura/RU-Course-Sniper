@@ -20,7 +20,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from app.api.deps import get_redis
 from app.core.config import settings
 from app.db.base import Base
-from app.db.session import get_db
+from app.db.session import get_api_db, get_db
 from app.main import create_app
 
 TEST_DATABASE_URL = settings.DATABASE_URL.replace("/course_sniper", "/course_sniper_test")
@@ -83,6 +83,7 @@ async def client(test_engine, fake_redis) -> AsyncClient:
 
     app = create_app()
     app.dependency_overrides[get_db] = override_get_db
+    app.dependency_overrides[get_api_db] = override_get_db
     app.dependency_overrides[get_redis] = lambda: fake_redis
     async with AsyncClient(
         transport=ASGITransport(app=app), base_url="http://test"

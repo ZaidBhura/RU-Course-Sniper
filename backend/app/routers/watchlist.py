@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_active_user
-from app.db.session import get_db
+from app.db.session import get_api_db
 from app.models.user import User
 from app.models.watched_index import WatchedIndex
 from app.schemas.watchlist import WatchedIndexCreate, WatchedIndexOut, WatchedIndexPatch
@@ -17,7 +17,7 @@ router = APIRouter(prefix="/watchlist", tags=["watchlist"])
 @router.get("/", response_model=list[WatchedIndexOut])
 async def list_watchlist(
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(WatchedIndex)
@@ -31,7 +31,7 @@ async def list_watchlist(
 async def create_watched_index(
     body: WatchedIndexCreate,
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     wi = WatchedIndex(
         tenant_id=user.tenant_id,
@@ -46,7 +46,6 @@ async def create_watched_index(
     except IntegrityError:
         await db.rollback()
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Already watching this index")
-    await db.refresh(wi)
     return wi
 
 
@@ -55,7 +54,7 @@ async def update_watched_index(
     watched_id: uuid.UUID,
     body: WatchedIndexPatch,
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(WatchedIndex).where(
@@ -74,7 +73,6 @@ async def update_watched_index(
         wi.is_active = body.is_active
 
     await db.commit()
-    await db.refresh(wi)
     return wi
 
 
@@ -82,7 +80,7 @@ async def update_watched_index(
 async def delete_watched_index(
     watched_id: uuid.UUID,
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(WatchedIndex).where(

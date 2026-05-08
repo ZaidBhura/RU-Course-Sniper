@@ -67,7 +67,6 @@ async def register(
     )
     db.add(user)
     await db.commit()
-    await db.refresh(user)
 
     return await _issue_tokens(user, redis)
 

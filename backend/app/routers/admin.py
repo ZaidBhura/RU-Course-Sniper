@@ -5,7 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_superuser
-from app.db.session import get_db
+from app.db.session import get_api_db
 from app.models.notification_log import NotificationLog
 from app.models.user import User
 from app.models.watched_index import WatchedIndex
@@ -19,7 +19,7 @@ router = APIRouter(prefix="/admin", tags=["admin"])
 @router.get("/users", response_model=list[UserOut])
 async def list_users(
     admin: User = Depends(get_current_superuser),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(User).where(User.tenant_id == admin.tenant_id).order_by(User.created_at.desc())
@@ -32,7 +32,7 @@ async def update_user(
     user_id: uuid.UUID,
     body: UserPatch,
     admin: User = Depends(get_current_superuser),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(User).where(User.id == user_id, User.tenant_id == admin.tenant_id)
@@ -47,14 +47,13 @@ async def update_user(
         user.is_superuser = body.is_superuser
 
     await db.commit()
-    await db.refresh(user)
     return user
 
 
 @router.get("/watchlists", response_model=list[WatchedIndexOut])
 async def list_all_watchlists(
     admin: User = Depends(get_current_superuser),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(WatchedIndex)
@@ -67,7 +66,7 @@ async def list_all_watchlists(
 @router.get("/logs", response_model=list[NotificationLogOut])
 async def list_all_logs(
     admin: User = Depends(get_current_superuser),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(NotificationLog)

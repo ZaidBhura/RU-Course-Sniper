@@ -17,6 +17,11 @@ class Settings(BaseSettings):
     # Sync driver for Celery workers (postgresql+psycopg2://)
     SYNC_DATABASE_URL: str = Field(repr=False)
 
+    # M5: least-privilege role URLs (optional — falls back to DATABASE_URL / SYNC_DATABASE_URL in dev)
+    # In production, point these at sniper_api / sniper_worker roles to enforce RLS.
+    API_DATABASE_URL: str | None = Field(default=None, repr=False)
+    WORKER_DATABASE_URL: str | None = Field(default=None, repr=False)
+
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
 

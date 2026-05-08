@@ -1,12 +1,12 @@
 import redis.asyncio as aioredis
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.security import decode_access_token
-from app.db.session import get_db
+from app.db.session import get_api_db
 from app.models.user import User
 
 bearer = HTTPBearer()
@@ -28,7 +28,7 @@ def get_redis() -> aioredis.Redis:
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(bearer),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ) -> User:
     creds_exc = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -41,8 +41,16 @@ async def get_current_user(
         raise creds_exc
 
     user_id: str | None = payload.get("sub")
-    if not user_id:
+    tenant_id: str | None = payload.get("tenant_id")
+    if not user_id or not tenant_id:
         raise creds_exc
+
+    # Set transaction-local RLS context before any table access.
+    # set_config(..., TRUE) = SET LOCAL — auto-cleared at transaction end (commit/rollback).
+    await db.execute(
+        text("SELECT set_config('app.current_tenant_id', :tid, TRUE)"),
+        {"tid": tenant_id},
+    )
 
     result = await db.execute(select(User).where(User.id == user_id))
     user = result.scalar_one_or_none()

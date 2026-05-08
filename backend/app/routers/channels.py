@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_current_active_user
 from app.core.security import encrypt_credential
-from app.db.session import get_db
+from app.db.session import get_api_db
 from app.models.notification_channel import NotificationChannel
 from app.models.user import User
 from app.schemas.channel import ChannelCreate, ChannelOut
@@ -35,7 +35,7 @@ def _build_credential_json(channel_type: str, credential) -> str:
 @router.get("/", response_model=list[ChannelOut])
 async def list_channels(
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(NotificationChannel)
@@ -52,7 +52,7 @@ async def list_channels(
 async def create_channel(
     body: ChannelCreate,
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     blob = encrypt_credential(_build_credential_json(body.channel_type, body.credential))
     channel = NotificationChannel(
@@ -70,7 +70,6 @@ async def create_channel(
             status_code=status.HTTP_409_CONFLICT,
             detail=f"A {body.channel_type} channel already exists",
         )
-    await db.refresh(channel)
     return channel
 
 
@@ -78,7 +77,7 @@ async def create_channel(
 async def delete_channel(
     channel_id: uuid.UUID,
     user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db),
+    db: AsyncSession = Depends(get_api_db),
 ):
     result = await db.execute(
         select(NotificationChannel).where(
