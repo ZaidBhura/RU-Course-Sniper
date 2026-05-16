@@ -60,7 +60,11 @@ function WatchedIndexRow({ item }: { item: WatchedIndexOut }) {
           <IndexNumber value={item.index_number} />
         </TableCell>
         <TableCell className="text-sm text-muted-foreground">
-          {item.label ?? <span className="text-muted-foreground/50 italic">—</span>}
+          {item.label
+            ? <span>{item.label}</span>
+            : item.course_name
+              ? <span>{item.course_name}</span>
+              : <span className="text-muted-foreground/50 italic">—</span>}
         </TableCell>
         <TableCell>
           <Badge
@@ -108,7 +112,8 @@ function WatchedIndexRow({ item }: { item: WatchedIndexOut }) {
 }
 
 export function WatchlistTable() {
-  const { data: items, isLoading, error } = useWatchlist();
+  const { data: allItems, isLoading, error } = useWatchlist();
+  const items = allItems?.filter((i) => i.status === "watching");
 
   return (
     <div className="space-y-4">
@@ -118,7 +123,7 @@ export function WatchlistTable() {
         <Table>
           <TableHeader>
             <TableRow className="border-border">
-              {["Index", "Label", "Semester", "Active", "Added", ""].map((h) => (
+              {["Index", "Course", "Semester", "Active", "Added", ""].map((h) => (
                 <TableHead key={h} className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
                   {h}
                 </TableHead>
@@ -138,7 +143,7 @@ export function WatchlistTable() {
         <Table>
           <TableHeader>
             <TableRow className="border-border">
-              {["Index", "Label", "Semester", "Active", "Added", ""].map((h) => (
+              {["Index", "Course", "Semester", "Active", "Added", ""].map((h) => (
                 <TableHead
                   key={h}
                   scope="col"

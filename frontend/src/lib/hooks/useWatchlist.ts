@@ -7,6 +7,7 @@ import {
   createWatchedIndex,
   patchWatchedIndex,
   deleteWatchedIndex,
+  resnipeWatchedIndex,
 } from "@/lib/api/watchlist";
 import type { WatchedIndexCreate, WatchedIndexPatch } from "@/lib/schemas/watchlist";
 
@@ -40,6 +41,14 @@ export function useDeleteWatchedIndex() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteWatchedIndex(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.watchlist }),
+  });
+}
+
+export function useResnipe() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => resnipeWatchedIndex(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.watchlist }),
   });
 }

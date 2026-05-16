@@ -1,9 +1,9 @@
 import { apiClient } from "./client";
 import {
-  WatchedIndexCreate,
-  WatchedIndexOut,
+  type WatchedIndexCreate,
+  type WatchedIndexOut,
   WatchedIndexOutSchema,
-  WatchedIndexPatch,
+  type WatchedIndexPatch,
 } from "@/lib/schemas/watchlist";
 import { z } from "zod";
 
@@ -29,4 +29,9 @@ export async function patchWatchedIndex(
 
 export async function deleteWatchedIndex(id: string): Promise<void> {
   await apiClient.delete(`/watchlist/${id}`);
+}
+
+export async function resnipeWatchedIndex(id: string): Promise<WatchedIndexOut> {
+  const { data } = await apiClient.post(`/watchlist/${id}/resnipe`);
+  return WatchedIndexOutSchema.parse(data);
 }

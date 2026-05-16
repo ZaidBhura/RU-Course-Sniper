@@ -22,7 +22,9 @@ class WatchedIndexOut(BaseModel):
     id: uuid.UUID
     index_number: int
     label: str | None
+    course_name: str | None
     semester_code: str
     is_active: bool
+    status: str
     created_at: datetime
     updated_at: datetime

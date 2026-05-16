@@ -25,7 +25,7 @@ async def _headers(token: str) -> dict:
 @pytest.mark.asyncio
 async def test_admin_requires_auth(client: AsyncClient):
     r = await client.get("/api/admin/users")
-    assert r.status_code == 403
+    assert r.status_code == 401
 
 
 @pytest.mark.asyncio

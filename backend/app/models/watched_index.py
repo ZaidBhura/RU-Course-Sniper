@@ -81,6 +81,10 @@ class WatchedIndex(Base, TimestampMixin):
     is_active: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=True, server_default=text("TRUE")
     )
+    status: Mapped[str] = mapped_column(
+        String, nullable=False, default="watching", server_default="watching"
+    )
+    course_name: Mapped[str | None] = mapped_column(String, nullable=True)
 
     user: Mapped[User] = relationship("User", back_populates="watched_indexes")
     notification_logs: Mapped[list[NotificationLog]] = relationship(

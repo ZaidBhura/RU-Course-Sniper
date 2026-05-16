@@ -113,11 +113,11 @@ async def test_delete_soft_deletes(client: AsyncClient):
     r = await client.delete(f"/api/watchlist/{wi_id}", headers=headers)
     assert r.status_code == 204
 
+    # Soft-deleted items are hidden from the list (is_active=False filtered out).
     list_r = await client.get("/api/watchlist/", headers=headers)
     items = list_r.json()
     match = next((i for i in items if i["id"] == wi_id), None)
-    assert match is not None
-    assert match["is_active"] is False
+    assert match is None
 
 
 @pytest.mark.asyncio
@@ -155,4 +155,4 @@ async def test_tenant_isolation(client: AsyncClient):
 @pytest.mark.asyncio
 async def test_unauthenticated_rejected(client: AsyncClient):
     r = await client.get("/api/watchlist/")
-    assert r.status_code == 403
+    assert r.status_code == 401

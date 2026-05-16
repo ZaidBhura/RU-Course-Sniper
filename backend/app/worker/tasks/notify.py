@@ -13,12 +13,11 @@ Deduplication flow:
 """
 
 import json
-import logging
 from datetime import datetime, timezone
 
+import structlog
 from sqlalchemy import select
 
-from app.core.config import settings
 from app.core.security import decrypt_credential
 from app.models.notification_channel import NotificationChannel
 from app.models.notification_log import NotificationLog
@@ -28,7 +27,7 @@ from app.services.notifier import NotificationPayload, build_webreg_url
 from app.worker.celery_app import celery_app
 from app.worker.db import NOTIFIED_KEY, get_worker_redis, get_worker_session
 
-logger = logging.getLogger(__name__)
+log = structlog.get_logger(__name__)
 
 
 @celery_app.task(
@@ -38,7 +37,9 @@ logger = logging.getLogger(__name__)
     default_retry_delay=30,
     acks_late=True,
 )
-def dispatch_notification(self, watched_index_id: str, index_number: int, semester_code: str) -> dict:
+def dispatch_notification(
+    self, watched_index_id: str, index_number: int, semester_code: str
+) -> dict:
     """Send notifications for a newly-open course index to a single user.
 
     Idempotent: a Redis dedup key prevents double-sending within the same open event.
@@ -52,7 +53,11 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
         ).scalar_one_or_none()
 
         if wi is None or not wi.is_active:
-            logger.info("dispatch_notification: watched_index %s not found or inactive, skipping", watched_index_id)
+            log.info(
+                "dispatch_notification.skipped",
+                watched_index_id=watched_index_id,
+                reason="watched_index_inactive",
+            )
             return {"status": "skipped", "reason": "watched_index_inactive"}
 
         user_id = str(wi.user_id)
@@ -63,9 +68,11 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
         )
 
         if r.get(dedup_key):
-            logger.info(
-                "dispatch_notification: already notified user=%s index=%d, skipping",
-                user_id, index_number,
+            log.info(
+                "dispatch_notification.skipped",
+                user_id=user_id,
+                index_number=index_number,
+                reason="already_notified",
             )
             return {"status": "skipped", "reason": "already_notified"}
 
@@ -79,19 +86,29 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             webreg_url=webreg_url,
         )
 
-        channels = session.execute(
-            select(NotificationChannel).where(
-                NotificationChannel.user_id == wi.user_id,
-                NotificationChannel.is_active.is_(True),
+        channels = (
+            session.execute(
+                select(NotificationChannel).where(
+                    NotificationChannel.user_id == wi.user_id,
+                    NotificationChannel.is_active.is_(True),
+                )
             )
-        ).scalars().all()
+            .scalars()
+            .all()
+        )
+
+        # Mark as opened and set dedup key immediately — before attempting delivery.
+        # Status must reflect reality even when no channels are configured or all fail.
+        wi.status = "opened"
+        r.set(dedup_key, "1")
 
         if not channels:
-            logger.warning(
-                "dispatch_notification: user=%s has no active channels for index=%d",
-                user_id, index_number,
+            log.warning(
+                "dispatch_notification.no_channels",
+                user_id=user_id,
+                index_number=index_number,
             )
-            return {"status": "skipped", "reason": "no_channels"}
+            return {"status": "opened_no_channels", "reason": "no_channels"}
 
         now = datetime.now(tz=timezone.utc)
         any_success = False
@@ -100,38 +117,41 @@ def dispatch_notification(self, watched_index_id: str, index_number: int, semest
             try:
                 result = _send_channel(channel, payload)
             except Exception as exc:
-                logger.exception(
-                    "dispatch_notification: error on channel %s for index=%d: %s",
-                    channel.channel_type, index_number, exc,
+                log.exception(
+                    "dispatch_notification.channel_error",
+                    channel_type=channel.channel_type,
+                    index_number=index_number,
+                    error=str(exc),
                 )
                 result = notifier.SendResult(success=False, error=str(exc))
 
             if result.success:
                 any_success = True
 
-            session.add(NotificationLog(
-                tenant_id=wi.tenant_id,
-                user_id=wi.user_id,
-                watched_index_id=wi.id,
-                index_number=index_number,
-                semester_code=semester_code,
-                channel_type=channel.channel_type,
-                event_type="open_notify",
-                delivery_status="sent" if result.success else "failed",
-                error_message=result.error if not result.success else None,
-                course_subject=course_detail.subject if course_detail else None,
-                course_number=course_detail.course_number if course_detail else None,
-                course_title=course_detail.title if course_detail else None,
-                webreg_url=webreg_url,
-                created_at=now,
-            ))
+            session.add(
+                NotificationLog(
+                    tenant_id=wi.tenant_id,
+                    user_id=wi.user_id,
+                    watched_index_id=wi.id,
+                    index_number=index_number,
+                    semester_code=semester_code,
+                    channel_type=channel.channel_type,
+                    event_type="open_notify",
+                    delivery_status="sent" if result.success else "failed",
+                    error_message=result.error if not result.success else None,
+                    course_subject=course_detail.subject if course_detail else None,
+                    course_number=course_detail.course_number if course_detail else None,
+                    course_title=course_detail.title if course_detail else None,
+                    webreg_url=webreg_url,
+                    created_at=now,
+                )
+            )
 
-        if any_success:
-            r.set(dedup_key, "1")
-        else:
-            logger.error(
-                "dispatch_notification: all channels failed for user=%s index=%d",
-                user_id, index_number,
+        if not any_success:
+            log.error(
+                "dispatch_notification.all_channels_failed",
+                user_id=user_id,
+                index_number=index_number,
             )
 
         return {"status": "sent" if any_success else "all_failed", "channels": len(channels)}
@@ -151,4 +171,6 @@ def _send_channel(channel, payload: NotificationPayload) -> notifier.SendResult:
     elif channel.channel_type == "pushover":
         return notifier.send_pushover(creds["token"], creds["user_key"], payload)
     else:
-        return notifier.SendResult(success=False, error=f"unknown channel_type: {channel.channel_type}")
+        return notifier.SendResult(
+            success=False, error=f"unknown channel_type: {channel.channel_type}"
+        )
