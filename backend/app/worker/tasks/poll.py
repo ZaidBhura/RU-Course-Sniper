@@ -60,7 +60,7 @@ def poll_soc(self, semester_code: str) -> dict:
     try:
         open_sections = soc_client.fetch_open_sections(semester_code)
         current_open: set[int] = {s.index_number for s in open_sections}
-        previous_open: set[int] = {int(x) for x in r.smembers(open_set_key)}
+        previous_open: set[int] = {int(x) for x in r.smembers(open_set_key)}  # type: ignore[union-attr]
 
         newly_open = current_open - previous_open
         newly_closed = previous_open - current_open

@@ -91,7 +91,9 @@ class TestDispatchNotificationDedup:
         dedup_key = f"sniper:notified:{wi.user_id}:11643:12026"
         assert fake_r.get(dedup_key) == "1"
 
-    def test_does_not_set_dedup_key_when_all_fail(self, fake_r, fernet_key):
+    def test_sets_dedup_key_even_when_all_fail(self, fake_r, fernet_key):
+        # Dedup key is set before delivery so status always reflects reality,
+        # even if every channel times out.  Resnipe clears the key to re-enable.
         wi = make_watched_index()
         creds = json.dumps({"webhook_url": "https://discord.com/api/webhooks/test"})
         channel = _make_channel("discord", _encrypt(fernet_key, creds))
@@ -114,7 +116,7 @@ class TestDispatchNotificationDedup:
 
         assert result["status"] == "all_failed"
         dedup_key = f"sniper:notified:{wi.user_id}:11643:12026"
-        assert fake_r.get(dedup_key) is None
+        assert fake_r.get(dedup_key) == "1"
 
 
 class TestDispatchNotificationGuards:
@@ -148,7 +150,9 @@ class TestDispatchNotificationGuards:
 
         assert result["status"] == "skipped"
 
-    def test_skips_when_no_channels(self, fake_r, fernet_key):
+    def test_opens_status_when_no_channels(self, fake_r, fernet_key):
+        # Status is still set to opened even when no channels are configured,
+        # so the UI shows the course as opened rather than stuck watching.
         wi = make_watched_index()
         mock_session = MagicMock()
         mock_session.execute.return_value.scalar_one_or_none.return_value = wi
@@ -162,7 +166,7 @@ class TestDispatchNotificationGuards:
             from app.worker.tasks.notify import dispatch_notification
             result = dispatch_notification.run(str(wi.id), 11643, "12026")
 
-        assert result["status"] == "skipped"
+        assert result["status"] == "opened_no_channels"
         assert result["reason"] == "no_channels"
 
 

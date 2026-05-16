@@ -49,4 +49,4 @@ class Settings(BaseSettings):
     SENTRY_DSN: str | None = None
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]

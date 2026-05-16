@@ -29,7 +29,7 @@ async def _lookup_course_name(
 ) -> str | None:
     """Return a human-readable course name from the Redis enricher cache, or None."""
     try:
-        raw = await redis.hget(
+        raw = await redis.hget(  # type: ignore[misc]
             _COURSE_CACHE_KEY.format(semester_code=semester_code),
             str(index_number),
         )
@@ -60,7 +60,7 @@ async def _is_index_open(
     """
     # Fast path: Redis live set populated by poll_soc
     open_set_key = _OPEN_SET_KEY.format(semester_code=semester_code)
-    if await redis.sismember(open_set_key, str(index_number)):
+    if await redis.sismember(open_set_key, str(index_number)):  # type: ignore[misc]
         return True
 
     # Fallback: durable DB state (survives worker restarts, survives cold Redis)

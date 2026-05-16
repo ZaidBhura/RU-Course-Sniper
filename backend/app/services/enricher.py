@@ -80,7 +80,7 @@ def get_course_detail(
         raw = r.hget(key, str(index_number))
         if raw is None:
             return None
-        data = json.loads(raw)
+        data = json.loads(raw)  # type: ignore[arg-type]
         return CourseDetail(
             subject=data["subject"],
             course_number=data["course_number"],
