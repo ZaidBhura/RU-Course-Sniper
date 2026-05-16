@@ -23,7 +23,15 @@ from app.db.base import Base
 from app.db.session import get_api_db, get_db
 from app.main import create_app
 
-TEST_DATABASE_URL = settings.DATABASE_URL.replace("/course_sniper", "/course_sniper_test")
+# If DATABASE_URL already points at a *_test database (e.g. in CI), use it
+# as-is.  In local dev it points at the main 'course_sniper' database, so we
+# derive a separate 'course_sniper_test' URL to avoid touching dev data.
+_raw_url = settings.DATABASE_URL
+TEST_DATABASE_URL = (
+    _raw_url
+    if _raw_url.rsplit("/", 1)[-1].endswith("_test")
+    else _raw_url.replace("/course_sniper", "/course_sniper_test")
+)
 SYNC_TEST_DATABASE_URL = TEST_DATABASE_URL.replace("+asyncpg", "+psycopg2")
 
 

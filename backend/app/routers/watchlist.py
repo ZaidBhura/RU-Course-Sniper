@@ -159,9 +159,7 @@ async def create_watched_index(
 
     # If the index is already open, notify immediately (once).
     if await _is_index_open(db, redis, body.index_number, body.semester_code):
-        dispatch_notification.apply_async(
-            args=[str(wi.id), body.index_number, body.semester_code]
-        )
+        dispatch_notification.apply_async(args=[str(wi.id), body.index_number, body.semester_code])
 
     return wi
 
@@ -198,9 +196,7 @@ async def resnipe_watched_index(
 
     # If course is currently open, notify immediately rather than waiting for next poll.
     if await _is_index_open(db, redis, wi.index_number, wi.semester_code):
-        dispatch_notification.apply_async(
-            args=[str(wi.id), wi.index_number, wi.semester_code]
-        )
+        dispatch_notification.apply_async(args=[str(wi.id), wi.index_number, wi.semester_code])
 
     return wi
 
