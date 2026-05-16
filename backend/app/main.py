@@ -1,17 +1,33 @@
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
-from slowapi import _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 from sqlalchemy import text
 
 from app.core.config import settings
+from app.core.logging import configure_logging
 from app.core.rate_limit import limiter
 from app.db.session import engine
+from app.middleware.request_logging import RequestLoggingMiddleware
 from app.routers import admin, auth, channels, health, logs, watchlist
+
+configure_logging()
+
+if settings.SENTRY_DSN:
+    import sentry_sdk
+    from sentry_sdk.integrations.fastapi import FastApiIntegration
+    from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+
+    sentry_sdk.init(
+        dsn=settings.SENTRY_DSN,
+        environment=settings.ENVIRONMENT,
+        send_default_pii=False,
+        traces_sample_rate=0.1 if settings.ENVIRONMENT == "production" else 0.0,
+        integrations=[FastApiIntegration(), SqlalchemyIntegration()],
+    )
 
 
 @asynccontextmanager
@@ -34,6 +50,9 @@ def create_app() -> FastAPI:
 
     app.state.limiter = limiter
     app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+    # RequestLoggingMiddleware must wrap before CORS so request_id is set first.
+    app.add_middleware(RequestLoggingMiddleware)
 
     allowed_origins = [o.strip() for o in settings.ALLOWED_ORIGINS.split(",") if o.strip()]
     app.add_middleware(

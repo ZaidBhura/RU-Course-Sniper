@@ -6,7 +6,7 @@ export default function DashboardPage() {
   return (
     <>
       <TopBar title="Dashboard" />
-      <div className="p-6 space-y-6 max-w-4xl">
+      <div className="p-6 space-y-6">
         <StatsBar />
         <RecentActivityFeed />
       </div>

@@ -10,6 +10,7 @@ def _utcnow() -> datetime:
 
 class Base(DeclarativeBase):
     """Shared declarative base for all SQLAlchemy models."""
+
     pass
 
 

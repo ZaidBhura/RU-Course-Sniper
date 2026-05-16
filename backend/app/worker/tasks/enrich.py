@@ -9,14 +9,14 @@ Failure is non-fatal — notifications still fire with just the index number
 (preserves legacy/enricher.py graceful-degradation behaviour).
 """
 
-import logging
+import structlog
 
 from app.core.config import settings
 from app.services import enricher, soc_client
 from app.worker.celery_app import celery_app
 from app.worker.db import get_worker_redis
 
-logger = logging.getLogger(__name__)
+log = structlog.get_logger(__name__)
 
 
 @celery_app.task(
@@ -33,13 +33,13 @@ def refresh_course_cache(self, semester_code: str) -> dict:
     warm even if a scheduled refresh fires slightly late.
     """
     try:
-        logger.info("refresh_course_cache(%s): fetching from SOC API", semester_code)
+        log.info("refresh_course_cache.fetching", semester_code=semester_code)
         course_map = soc_client.fetch_courses(semester_code)
 
         if not course_map:
-            logger.warning(
-                "refresh_course_cache(%s): SOC API returned empty course map — cache not updated",
-                semester_code,
+            log.warning(
+                "refresh_course_cache.empty_response",
+                semester_code=semester_code,
             )
             return {"status": "empty", "count": 0}
 
@@ -47,9 +47,14 @@ def refresh_course_cache(self, semester_code: str) -> dict:
         ttl = settings.ENRICH_INTERVAL_SECONDS + 100
         enricher.store_course_details(r, semester_code, course_map, ttl_seconds=ttl)
 
-        logger.info("refresh_course_cache(%s): cached %d courses (TTL=%ds)", semester_code, len(course_map), ttl)
+        log.info(
+            "refresh_course_cache.complete",
+            semester_code=semester_code,
+            count=len(course_map),
+            ttl_seconds=ttl,
+        )
         return {"status": "ok", "count": len(course_map), "semester_code": semester_code}
 
     except Exception as exc:
-        logger.exception("refresh_course_cache(%s) error: %s", semester_code, exc)
+        log.exception("refresh_course_cache.error", semester_code=semester_code, error=str(exc))
         raise self.retry(exc=exc)

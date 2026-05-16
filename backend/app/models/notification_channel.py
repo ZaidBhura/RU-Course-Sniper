@@ -3,7 +3,15 @@ from __future__ import annotations
 import uuid
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Boolean, CheckConstraint, ForeignKey, LargeBinary, String, UniqueConstraint, text
+from sqlalchemy import (
+    Boolean,
+    CheckConstraint,
+    ForeignKey,
+    LargeBinary,
+    String,
+    UniqueConstraint,
+    text,
+)
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -31,9 +39,7 @@ class NotificationChannel(Base, TimestampMixin):
 
     __tablename__ = "notification_channels"
     __table_args__ = (
-        UniqueConstraint(
-            "user_id", "channel_type", name="uq_notification_channels_user_type"
-        ),
+        UniqueConstraint("user_id", "channel_type", name="uq_notification_channels_user_type"),
         CheckConstraint(
             f"channel_type IN {CHANNEL_TYPES}",
             name="chk_notification_channels_type",

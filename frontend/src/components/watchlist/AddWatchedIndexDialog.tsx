@@ -34,7 +34,7 @@ export function AddWatchedIndexDialog() {
   const { mutateAsync, isPending } = useCreateWatchedIndex();
   const form = useForm<WatchedIndexCreate>({
     resolver: zodResolver(WatchedIndexCreateSchema),
-    defaultValues: { index_number: undefined as unknown as number, label: "", semester_code: "12026" },
+    defaultValues: { index_number: "" as unknown as number, label: "", semester_code: "92026" },
   });
 
   async function onSubmit(values: WatchedIndexCreate) {
@@ -88,7 +88,7 @@ export function AddWatchedIndexDialog() {
                         {...field}
                         onChange={(e) =>
                           field.onChange(
-                            e.target.value === "" ? undefined : Number(e.target.value)
+                            e.target.value === "" ? "" : Number(e.target.value)
                           )
                         }
                       />
@@ -107,16 +107,19 @@ export function AddWatchedIndexDialog() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
-                      Label{" "}
+                      Custom Label{" "}
                       <span className="text-muted-foreground normal-case">(optional)</span>
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="e.g. CS 111 Lec 1"
+                        placeholder="Overrides the auto-filled course name"
                         className="bg-input border-border font-mono text-sm"
                         {...field}
                       />
                     </FormControl>
+                    <FormDescription>
+                      Leave blank to use the course name from the SOC
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -132,13 +135,13 @@ export function AddWatchedIndexDialog() {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="12026"
+                        placeholder="92026"
                         className="bg-input border-border font-mono text-sm"
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      5-digit code — 12026 = Spring 2026
+                      5-digit code — 92026 = Fall 2026
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

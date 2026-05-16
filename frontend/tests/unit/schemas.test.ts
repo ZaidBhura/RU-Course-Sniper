@@ -54,14 +54,14 @@ describe("WatchedIndexCreateSchema", () => {
     const r = WatchedIndexCreateSchema.safeParse({ index_number: 123, semester_code: "1234" });
     expect(r.success).toBe(false);
   });
-  it("accepts semester_code 12026", () => {
-    const r = WatchedIndexCreateSchema.safeParse({ index_number: 123, semester_code: "12026" });
+  it("accepts semester_code 92026", () => {
+    const r = WatchedIndexCreateSchema.safeParse({ index_number: 123, semester_code: "92026" });
     expect(r.success).toBe(true);
   });
-  it("defaults semester_code to 12026", () => {
+  it("defaults semester_code to 92026", () => {
     const r = WatchedIndexCreateSchema.safeParse({ index_number: 123 });
     expect(r.success).toBe(true);
-    if (r.success) expect(r.data.semester_code).toBe("12026");
+    if (r.success) expect(r.data.semester_code).toBe("92026");
   });
   it("rejects label over 200 chars", () => {
     const r = WatchedIndexCreateSchema.safeParse({ index_number: 123, label: "x".repeat(201) });

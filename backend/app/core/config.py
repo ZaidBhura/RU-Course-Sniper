@@ -17,8 +17,8 @@ class Settings(BaseSettings):
     # Sync driver for Celery workers (postgresql+psycopg2://)
     SYNC_DATABASE_URL: str = Field(repr=False)
 
-    # M5: least-privilege role URLs (optional — falls back to DATABASE_URL / SYNC_DATABASE_URL in dev)
-    # In production, point these at sniper_api / sniper_worker roles to enforce RLS.
+    # M5: least-privilege role URLs (optional — falls back to DATABASE_URL /
+    # SYNC_DATABASE_URL in dev). In prod, point at sniper_api / sniper_worker.
     API_DATABASE_URL: str | None = Field(default=None, repr=False)
     WORKER_DATABASE_URL: str | None = Field(default=None, repr=False)
 
@@ -26,14 +26,15 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379/0"
 
     # Polling
-    POLL_INTERVAL_SECONDS: int = 20
+    POLL_INTERVAL_SECONDS: int = 10
     ENRICH_INTERVAL_SECONDS: int = 600
-    POLL_LOCK_TTL_SECONDS: int = 30
-    SEMESTER_CODE: str = "12026"
+    POLL_LOCK_TTL_SECONDS: int = 15
+    SEMESTER_CODE: str = "92026"
 
     # Secrets — repr=False prevents accidental logging via str(settings)
     SECRET_KEY: str = Field(repr=False)
-    FERNET_KEY: str = Field(repr=False)  # Generate: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+    # Generate: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"  # noqa: E501
+    FERNET_KEY: str = Field(repr=False)
 
     # Auth
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30

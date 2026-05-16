@@ -5,15 +5,15 @@ term digit: 0=Winter, 1=Spring, 7=Summer, 9=Fall
 campus defaults to "NB" (New Brunswick).
 """
 
-import logging
 import random
 import time
 from dataclasses import dataclass
 from typing import Optional
 
 import requests
+import structlog
 
-logger = logging.getLogger(__name__)
+log = structlog.get_logger(__name__)
 
 _SESSION = requests.Session()
 _SESSION.headers.update({"User-Agent": "RUCourseSniper/2.0"})
@@ -49,8 +49,8 @@ def _parse_semester_code(semester_code: str) -> tuple[int, int, str]:
 def _request_with_retry(
     url: str,
     max_retries: int = 3,
-    backoff_factor: float = 1.0,
-    timeout: int = 10,
+    backoff_factor: float = 0.5,
+    timeout: int = 5,
 ) -> Optional[object]:
     """GET url with exponential backoff + jitter. Returns parsed JSON or None."""
     for attempt in range(max_retries):
@@ -60,10 +60,19 @@ def _request_with_retry(
             return response.json()
         except requests.exceptions.RequestException as exc:
             if attempt == max_retries - 1:
-                logger.error("SOC API request failed after %d attempts: %s", max_retries, exc)
+                log.error(
+                    "soc_api.request_failed",
+                    max_retries=max_retries,
+                    error=str(exc),
+                )
                 return None
             wait = backoff_factor * (2**attempt) + random.uniform(0, 0.5)
-            logger.warning("SOC API attempt %d failed (%s), retrying in %.1fs", attempt + 1, exc, wait)
+            log.warning(
+                "soc_api.retry",
+                attempt=attempt + 1,
+                wait_seconds=round(wait, 1),
+                error=str(exc),
+            )
             time.sleep(wait)
     return None
 
@@ -74,7 +83,9 @@ def fetch_open_sections(semester_code: str) -> list[OpenSection]:
     Returns an empty list on any API failure — caller must handle gracefully.
     """
     year, term, campus = _parse_semester_code(semester_code)
-    url = f"https://sis.rutgers.edu/soc/api/openSections.json?year={year}&term={term}&campus={campus}"
+    url = (
+        f"https://sis.rutgers.edu/soc/api/openSections.json?year={year}&term={term}&campus={campus}"
+    )
     data = _request_with_retry(url)
     if data is None:
         return []
@@ -84,7 +95,7 @@ def fetch_open_sections(semester_code: str) -> list[OpenSection]:
     elif isinstance(data, dict) and "openSections" in data:
         sections = data["openSections"]
     else:
-        logger.warning("Unexpected openSections response type: %s", type(data))
+        log.warning("soc_api.unexpected_open_sections_shape", response_type=str(type(data)))
         return []
 
     result: list[OpenSection] = []
@@ -95,7 +106,7 @@ def fetch_open_sections(semester_code: str) -> list[OpenSection]:
             elif isinstance(item, dict):
                 result.append(OpenSection(index_number=int(item["indexNumber"])))
         except (ValueError, KeyError, TypeError) as exc:
-            logger.debug("Skipping malformed open section entry: %s (%s)", item, exc)
+            log.debug("soc_api.malformed_section_skipped", error=str(exc))
     return result
 
 
@@ -115,7 +126,7 @@ def fetch_courses(semester_code: str) -> dict[int, CourseDetail]:
     elif isinstance(data, dict) and "courses" in data:
         courses = data["courses"]
     else:
-        logger.warning("Unexpected courses response type: %s", type(data))
+        log.warning("soc_api.unexpected_courses_shape", response_type=str(type(data)))
         return {}
 
     index_map: dict[int, CourseDetail] = {}
@@ -131,7 +142,9 @@ def fetch_courses(semester_code: str) -> dict[int, CourseDetail]:
                 continue
 
             instructors = [
-                i["name"] for i in section.get("instructors", []) if isinstance(i, dict) and "name" in i
+                i["name"]
+                for i in section.get("instructors", [])
+                if isinstance(i, dict) and "name" in i
             ]
             meeting_times: list[str] = []
             for mt in section.get("meetingTimes", []):

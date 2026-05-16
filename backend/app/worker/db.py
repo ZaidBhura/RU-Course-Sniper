@@ -30,6 +30,7 @@ def get_worker_redis() -> redis_lib.Redis:
     """Return a Redis client backed by the shared module-level connection pool."""
     return redis_lib.Redis(connection_pool=_redis_pool)
 
+
 # Use WORKER_DATABASE_URL (sniper_worker role, BYPASSRLS) if configured;
 # fall back to SYNC_DATABASE_URL in dev where a single superuser role is sufficient.
 _worker_db_url = settings.WORKER_DATABASE_URL or settings.SYNC_DATABASE_URL

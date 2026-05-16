@@ -1,17 +1,17 @@
 """Notification dispatch helpers for Discord and Pushover.
 
 Credentials are passed in explicitly — never read from env, never logged.
+Error messages returned by send_* functions must never include the webhook URL
+or credential values — str(requests.HTTPError) embeds the full request URL,
+so HTTPError is caught separately and only the status code is surfaced.
 """
 
-import logging
 from dataclasses import dataclass
 from typing import Optional
 
 import requests
 
 from app.services.soc_client import CourseDetail
-
-logger = logging.getLogger(__name__)
 
 _PUSHOVER_URL = "https://api.pushover.net/1/messages.json"
 _WEBREG_BASE = "https://sims.rutgers.edu/webreg/editSchedule.htm"
@@ -68,18 +68,24 @@ def send_discord(webhook_url: str, payload: NotificationPayload) -> SendResult:
     )
     body = {
         "content": f"🚨 **INDEX {payload.index_number} IS NOW OPEN!** 🚨",
-        "embeds": [{
-            "title": title,
-            "description": _format_message(payload),
-            "color": 0x00FF00,
-        }],
+        "embeds": [
+            {
+                "title": title,
+                "description": _format_message(payload),
+                "color": 0x00FF00,
+            }
+        ],
     }
     try:
         resp = requests.post(webhook_url, json=body, timeout=10)
         resp.raise_for_status()
         return SendResult(success=True)
+    except requests.exceptions.HTTPError as exc:
+        # str(HTTPError) includes the full webhook URL (which contains a secret token).
+        # Surface only the HTTP status code so credentials never reach logs or the DB.
+        return SendResult(success=False, error=f"HTTP {exc.response.status_code}")
     except requests.exceptions.RequestException as exc:
-        return SendResult(success=False, error=str(exc))
+        return SendResult(success=False, error=type(exc).__name__)
 
 
 def send_pushover(token: str, user_key: str, payload: NotificationPayload) -> SendResult:
@@ -101,5 +107,7 @@ def send_pushover(token: str, user_key: str, payload: NotificationPayload) -> Se
         resp = requests.post(_PUSHOVER_URL, data=body, timeout=10)
         resp.raise_for_status()
         return SendResult(success=True)
+    except requests.exceptions.HTTPError as exc:
+        return SendResult(success=False, error=f"HTTP {exc.response.status_code}")
     except requests.exceptions.RequestException as exc:
-        return SendResult(success=False, error=str(exc))
+        return SendResult(success=False, error=type(exc).__name__)

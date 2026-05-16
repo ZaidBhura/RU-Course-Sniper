@@ -29,9 +29,7 @@ class IndexState(Base, TimestampMixin):
 
     __tablename__ = "index_state"
     __table_args__ = (
-        UniqueConstraint(
-            "index_number", "semester_code", name="uq_index_state_index_semester"
-        ),
+        UniqueConstraint("index_number", "semester_code", name="uq_index_state_index_semester"),
         # Partial index for fast lookup of currently-open indexes by the polling task
         Index(
             "idx_index_state_open",
@@ -52,12 +50,8 @@ class IndexState(Base, TimestampMixin):
     is_open: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=False, server_default=text("FALSE")
     )
-    last_opened_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True
-    )
-    last_closed_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True
-    )
+    last_opened_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    last_closed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     last_polled_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=text("NOW()"), nullable=False
     )

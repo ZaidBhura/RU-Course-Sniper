@@ -11,10 +11,10 @@ Preserves all behavioral semantics from legacy/watcher.py:
 7. Acquire distributed lock before polling — prevents concurrent duplicate polls
 """
 
-import logging
 from datetime import datetime, timezone
 
 import redis as redis_lib
+import structlog
 from sqlalchemy import select
 
 from app.core.config import settings
@@ -26,12 +26,12 @@ from app.worker.celery_app import celery_app
 from app.worker.db import NOTIFIED_KEY, get_worker_redis, get_worker_session
 from app.worker.tasks.notify import dispatch_notification
 
-logger = logging.getLogger(__name__)
+log = structlog.get_logger(__name__)
 
 _LOCK_KEY = "sniper:poll:lock:{semester_code}"
 _OPEN_SET_KEY = "sniper:poll:open:{semester_code}"
 _OPEN_SET_TTL = 120  # seconds — intentionally longer than poll interval so one missed
-                     # cycle doesn't falsely mark all indexes as closed
+# cycle doesn't falsely mark all indexes as closed
 
 
 @celery_app.task(
@@ -54,7 +54,7 @@ def poll_soc(self, semester_code: str) -> dict:
     # holds the lock forever.
     acquired = r.set(lock_key, "1", nx=True, ex=settings.POLL_LOCK_TTL_SECONDS)
     if not acquired:
-        logger.debug("poll_soc(%s): lock held by another worker, skipping", semester_code)
+        log.debug("poll_soc.skipped", semester_code=semester_code, reason="lock_held")
         return {"skipped": True, "reason": "lock_held"}
 
     try:
@@ -85,14 +85,19 @@ def poll_soc(self, semester_code: str) -> dict:
                 args=[watched_index_id, index_number, semester_code],
                 task_id=f"notify-{watched_index_id}-{semester_code}",
             )
-            logger.info(
-                "Enqueued dispatch_notification for watched_index=%s index=%d",
-                watched_index_id, index_number,
+            log.info(
+                "poll_soc.notification_queued",
+                watched_index_id=watched_index_id,
+                index_number=index_number,
+                semester_code=semester_code,
             )
 
-        logger.info(
-            "poll_soc(%s): total_open=%d newly_open=%d newly_closed=%d",
-            semester_code, len(current_open), len(newly_open), len(newly_closed),
+        log.info(
+            "poll_soc.complete",
+            semester_code=semester_code,
+            total_open=len(current_open),
+            newly_open=len(newly_open),
+            newly_closed=len(newly_closed),
         )
         return {
             "semester_code": semester_code,
@@ -102,7 +107,7 @@ def poll_soc(self, semester_code: str) -> dict:
         }
 
     except Exception as exc:
-        logger.exception("poll_soc(%s) error: %s", semester_code, exc)
+        log.exception("poll_soc.error", semester_code=semester_code, error=str(exc))
         raise self.retry(exc=exc)
     finally:
         r.delete(lock_key)
@@ -129,7 +134,9 @@ def _persist_state_changes(
                     IndexState.index_number.in_(all_transitions),
                     IndexState.semester_code == semester_code,
                 )
-            ).scalars().all()
+            )
+            .scalars()
+            .all()
         }
 
         for index_number in newly_open:
@@ -151,13 +158,18 @@ def _persist_state_changes(
 
         watchers_to_notify: list[tuple[str, int]] = []
         if newly_open:
-            watchers = session.execute(
-                select(WatchedIndex).where(
-                    WatchedIndex.index_number.in_(newly_open),
-                    WatchedIndex.semester_code == semester_code,
-                    WatchedIndex.is_active.is_(True),
+            watchers = (
+                session.execute(
+                    select(WatchedIndex).where(
+                        WatchedIndex.index_number.in_(newly_open),
+                        WatchedIndex.semester_code == semester_code,
+                        WatchedIndex.is_active.is_(True),
+                        WatchedIndex.status == "watching",
+                    )
                 )
-            ).scalars().all()
+                .scalars()
+                .all()
+            )
             watchers_to_notify = [(str(wi.id), wi.index_number) for wi in watchers]
 
     return watchers_to_notify
@@ -175,28 +187,36 @@ def _write_close_reset_logs(
     Deleting the dedup key mirrors watcher.py:129 notified_this_session.discard()
     so users are re-notified if the same index reopens later.
     """
-    watchers = session.execute(
-        select(WatchedIndex).where(
-            WatchedIndex.index_number == index_number,
-            WatchedIndex.semester_code == semester_code,
-            WatchedIndex.is_active.is_(True),
+    watchers = (
+        session.execute(
+            select(WatchedIndex).where(
+                WatchedIndex.index_number == index_number,
+                WatchedIndex.semester_code == semester_code,
+                WatchedIndex.is_active.is_(True),
+            )
         )
-    ).scalars().all()
+        .scalars()
+        .all()
+    )
 
     for wi in watchers:
-        r.delete(NOTIFIED_KEY.format(
-            user_id=str(wi.user_id),
-            index_number=index_number,
-            semester_code=semester_code,
-        ))
-        session.add(NotificationLog(
-            tenant_id=wi.tenant_id,
-            user_id=wi.user_id,
-            watched_index_id=wi.id,
-            index_number=index_number,
-            semester_code=semester_code,
-            channel_type="system",
-            event_type="close_reset",
-            delivery_status="skipped",
-            created_at=now,
-        ))
+        r.delete(
+            NOTIFIED_KEY.format(
+                user_id=str(wi.user_id),
+                index_number=index_number,
+                semester_code=semester_code,
+            )
+        )
+        session.add(
+            NotificationLog(
+                tenant_id=wi.tenant_id,
+                user_id=wi.user_id,
+                watched_index_id=wi.id,
+                index_number=index_number,
+                semester_code=semester_code,
+                channel_type="system",
+                event_type="close_reset",
+                delivery_status="skipped",
+                created_at=now,
+            )
+        )

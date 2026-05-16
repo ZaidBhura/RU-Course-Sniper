@@ -1,6 +1,7 @@
 """Celery application and Beat schedule for the RU Course Sniper worker."""
 
 from celery import Celery
+from celery.signals import worker_process_init
 
 from app.core.config import settings
 
@@ -28,6 +29,9 @@ celery_app.conf.update(
     worker_prefetch_multiplier=1,
     # Route long-running notification tasks to a dedicated queue in future.
     task_default_queue="default",
+    # Prevent Celery from hijacking the root logger — we own that via structlog.
+    worker_hijack_root_logger=False,
+    worker_log_color=False,
     beat_schedule={
         "poll-soc": {
             "task": "app.worker.tasks.poll.poll_soc",
@@ -41,3 +45,21 @@ celery_app.conf.update(
         },
     },
 )
+
+if settings.SENTRY_DSN:
+    import sentry_sdk
+    from sentry_sdk.integrations.celery import CeleryIntegration
+
+    sentry_sdk.init(
+        dsn=settings.SENTRY_DSN,
+        environment=settings.ENVIRONMENT,
+        send_default_pii=False,
+        integrations=[CeleryIntegration()],
+    )
+
+
+@worker_process_init.connect
+def _configure_worker_logging(**kwargs) -> None:
+    from app.core.logging import configure_logging
+
+    configure_logging()

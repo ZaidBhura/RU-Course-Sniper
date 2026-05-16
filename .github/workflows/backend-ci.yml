@@ -1,0 +1,118 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-ci.yml"
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+
+      - name: Install deps
+        run: pip install -e ".[dev]" ruff
+
+      - name: ruff check
+        run: ruff check app
+
+      - name: ruff format check
+        run: ruff format --check app
+
+      - name: mypy
+        run: mypy app
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: sniper
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: course_sniper_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    env:
+      DATABASE_URL: postgresql+asyncpg://sniper:test_password@localhost:5432/course_sniper_test
+      SYNC_DATABASE_URL: postgresql+psycopg2://sniper:test_password@localhost:5432/course_sniper_test
+      REDIS_URL: redis://localhost:6379/0
+      # Use GitHub secrets for real deployments; CI uses placeholder values.
+      SECRET_KEY: ${{ secrets.CI_SECRET_KEY || 'ci-test-secret-key-at-least-32-chars-long' }}
+      FERNET_KEY: ${{ secrets.CI_FERNET_KEY || 'ci-test-fernet-key-placeholder-aaaaaaa=' }}
+      ENVIRONMENT: test
+      LOG_LEVEL: WARNING
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+
+      - name: Install deps
+        run: pip install -e ".[dev]"
+
+      - name: Run pytest
+        run: pytest -v --tb=short
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+
+      - name: Install deps
+        run: pip install -e ".[dev]"
+
+      - name: bandit — static security analysis
+        run: bandit -r app -ll -x tests
+
+      - name: pip-audit — dependency vulnerability scan
+        # PYSEC-2024-60: python-jose JWT algorithm confusion CVE.
+        # Accepted as known tech debt; tracked for PyJWT migration in M7.
+        run: pip-audit --ignore-vuln PYSEC-2024-60

@@ -11,14 +11,14 @@ TTL:       ENRICH_INTERVAL_SECONDS + 100s buffer so data is always available
 """
 
 import json
-import logging
 from typing import Optional
 
 import redis as redis_lib
+import structlog
 
 from app.services.soc_client import CourseDetail
 
-logger = logging.getLogger(__name__)
+log = structlog.get_logger(__name__)
 
 _CACHE_KEY_PREFIX = "sniper:course:cache"
 
@@ -40,19 +40,21 @@ def store_course_details(
     """
     key = _cache_key(semester_code)
     if not course_map:
-        logger.warning("store_course_details called with empty map for %s — skipping", semester_code)
+        log.warning("enricher.store_skipped_empty_map", semester_code=semester_code)
         return
 
     mapping = {
-        str(index_number): json.dumps({
-            "subject": detail.subject,
-            "course_number": detail.course_number,
-            "section": detail.section,
-            "title": detail.title,
-            "instructors": detail.instructors,
-            "meeting_times": detail.meeting_times,
-            "index_number": detail.index_number,
-        })
+        str(index_number): json.dumps(
+            {
+                "subject": detail.subject,
+                "course_number": detail.course_number,
+                "section": detail.section,
+                "title": detail.title,
+                "instructors": detail.instructors,
+                "meeting_times": detail.meeting_times,
+                "index_number": detail.index_number,
+            }
+        )
         for index_number, detail in course_map.items()
     }
     pipe = r.pipeline()
@@ -60,7 +62,7 @@ def store_course_details(
     pipe.hset(key, mapping=mapping)
     pipe.expire(key, ttl_seconds)
     pipe.execute()
-    logger.info("Stored %d course details in Redis for semester %s", len(course_map), semester_code)
+    log.info("enricher.cache_written", semester_code=semester_code, count=len(course_map))
 
 
 def get_course_detail(
@@ -89,5 +91,5 @@ def get_course_detail(
             index_number=data["index_number"],
         )
     except Exception as exc:
-        logger.warning("Failed to get course detail for index %d: %s", index_number, exc)
+        log.warning("enricher.cache_read_failed", index_number=index_number, error=str(exc))
         return None
