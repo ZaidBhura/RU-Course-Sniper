@@ -134,7 +134,10 @@ async def create_watched_index(
             )
             wi = existing
         elif existing.status == "watching":
-            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Already watching this index")
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="Already watching this index",
+            )
         else:
             # status == 'opened'
             raise HTTPException(

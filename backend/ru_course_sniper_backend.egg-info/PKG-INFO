@@ -3,15 +3,16 @@ Name: ru-course-sniper-backend
 Version: 0.1.0
 Summary: RU Course Sniper — FastAPI backend
 Requires-Python: >=3.11
-Requires-Dist: fastapi<0.112,>=0.111.0
-Requires-Dist: uvicorn[standard]<0.31,>=0.30.0
+Requires-Dist: fastapi<0.137,>=0.136.0
+Requires-Dist: uvicorn[standard]>=0.30.0
 Requires-Dist: sqlalchemy<2.1,>=2.0.30
 Requires-Dist: asyncpg<0.30,>=0.29.0
 Requires-Dist: psycopg2-binary<3.0,>=2.9.9
 Requires-Dist: alembic<2.0,>=1.13.0
 Requires-Dist: pydantic<3.0,>=2.7.0
 Requires-Dist: pydantic-settings<3.0,>=2.3.0
-Requires-Dist: cryptography<43.0,>=42.0.0
+Requires-Dist: cryptography>=46.0.6
+Requires-Dist: starlette>=0.47.2
 Requires-Dist: redis<6.0,>=5.0.0
 Requires-Dist: celery[redis]<6.0,>=5.4.0
 Requires-Dist: requests<3.0,>=2.32.0
@@ -23,12 +24,13 @@ Requires-Dist: email-validator<3.0,>=2.1.0
 Requires-Dist: structlog<26.0,>=24.0.0
 Requires-Dist: sentry-sdk[fastapi]<3.0,>=2.0.0
 Provides-Extra: dev
-Requires-Dist: pytest>=8.2.0; extra == "dev"
+Requires-Dist: pytest>=9.0.3; extra == "dev"
 Requires-Dist: pytest-asyncio>=0.23.0; extra == "dev"
 Requires-Dist: pytest-mock>=3.14.0; extra == "dev"
 Requires-Dist: fakeredis>=2.23.0; extra == "dev"
 Requires-Dist: httpx>=0.27.0; extra == "dev"
 Requires-Dist: anyio>=4.4.0; extra == "dev"
+Requires-Dist: urllib3>=2.7.0; extra == "dev"
 Requires-Dist: mypy<2.0,>=1.10.0; extra == "dev"
 Requires-Dist: bandit<2.0,>=1.7.0; extra == "dev"
 Requires-Dist: pip-audit<3.0,>=2.7.0; extra == "dev"
