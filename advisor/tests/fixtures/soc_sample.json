@@ -1,0 +1,3365 @@
+[
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   },
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 22,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "INTRO COMPUTER SCI",
+  "preReqNotes": "Any Course EQUAL or GREATER Than: (01:640:112 PRECALCULUS PART II )",
+  "courseString": "01:198:111",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [
+   {
+    "id": "2026901198111  21",
+    "year": "2026",
+    "term": "9",
+    "description": "Information Technology and Research",
+    "code": "ITR",
+    "unit": "01",
+    "course": "111",
+    "subject": "198",
+    "lastUpdated": 1468423768000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "21",
+    "coreCode": "ITR",
+    "coreCodeDescription": "Information Technology and Research"
+   },
+   {
+    "id": "2026901198111  23",
+    "year": "2026",
+    "term": "9",
+    "description": "Quantitative Information",
+    "code": "QQ",
+    "unit": "01",
+    "course": "111",
+    "subject": "198",
+    "lastUpdated": 1468423785000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "23",
+    "coreCode": "QQ",
+    "coreCodeDescription": "Quantitative Information"
+   },
+   {
+    "id": "2026901198111  24",
+    "year": "2026",
+    "term": "9",
+    "description": "Mathematical or Formal Reasoning",
+    "code": "QR",
+    "unit": "01",
+    "course": "111",
+    "subject": "198",
+    "lastUpdated": 1468423795000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "24",
+    "coreCode": "QR",
+    "coreCodeDescription": "Mathematical or Formal Reasoning"
+   }
+  ],
+  "expandedTitle": "",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "111",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "M",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "CREDIT NOT GIVEN FOR BOTH THIS COURSE AND 14-332:252  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "CENTENO"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/16/2026 - 0400 - 0700 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     },
+     {
+      "code": "37",
+      "description": "Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu"
+     }
+    ],
+    "instructorsText": "CENTENO",
+    "minors": [],
+    "examCodeText": "Computer Science",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     },
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11389",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu, Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "232",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "232",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "108",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0845",
+      "buildingCode": "ARC",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "0940",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "H",
+      "startTime": "0845",
+      "endTime": "0940"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "M",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "CENTENO"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/16/2026 - 0400 - 0700 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "CENTENO",
+    "minors": [],
+    "examCodeText": "Computer Science",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     },
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11390",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "232",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "232",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "217",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0845",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "0940",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "H",
+      "startTime": "0845",
+      "endTime": "0940"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 4,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "DATA STRUCTURES",
+  "preReqNotes": "(01:198:111 INTRO COMPUTER SCI )",
+  "courseString": "01:198:112",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "112",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "1ST YEAR ONLY",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "M",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "CENTENO"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/16/2026 - 0400 - 0700 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     },
+     {
+      "code": "37",
+      "description": "Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu"
+     }
+    ],
+    "instructorsText": "CENTENO",
+    "minors": [],
+    "examCodeText": "Computer Science",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11425",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu, Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "B121",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1415",
+      "buildingCode": "LSH",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0215",
+      "endTime": "0310"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "M",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "CENTENO"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/16/2026 - 0400 - 0700 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     },
+     {
+      "code": "37",
+      "description": "Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu"
+     }
+    ],
+    "instructorsText": "CENTENO",
+    "minors": [],
+    "examCodeText": "Computer Science",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11426",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu, Common Hour Exam (CHE) schedule available at scheduling.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "125",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1415",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0215",
+      "endTime": "0310"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   },
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 7,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "INTR DISCRET STRCT I",
+  "preReqNotes": "(01:198:111 INTRO COMPUTER SCI )<em> OR </em>(14:332:252 PROGRAMMING METHODOLOGY I )",
+  "courseString": "01:198:205",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "INTRODUCTION TO DISCRETE STRUCTURES I",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "205",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "CREDIT NOT GIVEN FOR BOTH THIS COURSE AND 14-332:202 OR 332:312  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "HAMIDI"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/21/2026 - 0800 - 1100 AM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "HAMIDI",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "11515",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "114",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1210",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "114",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1210",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "B120",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1945",
+      "buildingCode": "EN",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "2040",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0745",
+      "endTime": "0840"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "HAMIDI"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/21/2026 - 0800 - 1100 AM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "HAMIDI",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "11516",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "114",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1210",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "114",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1210",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "102",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1755",
+      "buildingCode": "BME",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1850",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0555",
+      "endTime": "0650"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 2,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "INTR DISCRT STRCT II",
+  "preReqNotes": "((01:198:205 INTRODUCTION TO DISCRETE STRUCTURES I  or 14:332:312 DISCRETE MATHEMATICS ECE ) and (01:640:152 CALCULUS II FOR MATHEMATICAL AND PHYSICAL SCIENCES ))<em> OR </em> ((01:198:205 INTRODUCTION TO DISCRETE STRUCTURES I  or 14:332:312 DISCRETE MATHEMATICS ECE ) and (01:640:192 HONORS CALCULUS II ))",
+  "courseString": "01:198:206",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "INTRODUCTION TO DISCRETE STRUCTURES II",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "206",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "CREDIT NOT GIVEN FOR BOTH THIS COURSE AND 01-640:477  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "COWAN, CHARLES"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/21/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "COWAN, CHARLES",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11527",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1020",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "W",
+      "startTime": "1020",
+      "endTime": "1140"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "253",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1415",
+      "buildingCode": "BE",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0215",
+      "endTime": "0310"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "COWAN, CHARLES"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/21/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "COWAN, CHARLES",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11528",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1020",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "W",
+      "startTime": "1020",
+      "endTime": "1140"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "254",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1550",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0350",
+      "endTime": "0510"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "264",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1945",
+      "buildingCode": "TIL",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "2040",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0745",
+      "endTime": "0840"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 7,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "COMPUTER ARCHITECTUR",
+  "preReqNotes": "(01:198:112 DATA STRUCTURES )<em> OR </em>(14:332:351 PROGRM METHODOLOGYII )",
+  "courseString": "01:198:211",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "COMPUTER ARCHITECTURE",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "211",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "FIRNER"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/17/2026 - 0800 - 1100 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "FIRNER",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "11548",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "111",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1930",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "2050",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0730",
+      "endTime": "0850"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "111",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1930",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "2050",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0730",
+      "endTime": "0850"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "102",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1225",
+      "buildingCode": "RWH",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1320",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "1225",
+      "endTime": "0120"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "FIRNER"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/17/2026 - 0800 - 1100 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "FIRNER",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "11549",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "111",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1930",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "2050",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0730",
+      "endTime": "0850"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "111",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1930",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "2050",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "0730",
+      "endTime": "0850"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "207",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1755",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1850",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0555",
+      "endTime": "0650"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "3",
+    "description": "Livingston"
+   }
+  ],
+  "subject": "198",
+  "openSections": 3,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "DSGN&ANAL COMP ALGOR",
+  "preReqNotes": "((01:198:112 DATA STRUCTURES  or 14:332:351 PROGRM METHODOLOGYII ) and (01:198:206 INTRODUCTION TO DISCRETE STRUCTURES II ))<em> OR </em> ((01:198:112 DATA STRUCTURES  or 14:332:351 PROGRM METHODOLOGYII ) and (01:640:477 MATHEMATICAL THEORY OF PROBABILITY ))<em> OR </em> ((01:198:112 DATA STRUCTURES  or 14:332:351 PROGRM METHODOLOGYII ) and (14:332:321 PROBABLTY&RANDOM PRC ))<em> OR </em> ((01:198:112 DATA STRUCTURES  or 14:332:351 PROGRM METHODOLOGYII ) and (14:332:226 PROBABILITY & RANDOM PROCESSES ))",
+  "courseString": "01:198:344",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "DESIGN AND ANALYSIS OF COMPUTER ALGORITHMS",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "344",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "ZHANG, YONGFENG"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/17/2026 - 0800 - 1100 AM",
+    "majors": [
+     {
+      "code": "198",
+      "isUnitCode": false,
+      "isMajorCode": true
+     },
+     {
+      "code": "185",
+      "isUnitCode": false,
+      "isMajorCode": true
+     }
+    ],
+    "openToText": "MAJ: 185 (Cognitive Science), 198 (Computer Science); MINOR: 198 (Computer Science)",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "ZHANG, YONGFENG",
+    "minors": [
+     {
+      "code": "198"
+     }
+    ],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11592",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "A102",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1210",
+      "buildingCode": "LSH",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "A102",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "LSH",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "250",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1605",
+      "buildingCode": "BE",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1700",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0405",
+      "endTime": "0500"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "ZHANG, YONGFENG"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/17/2026 - 0800 - 1100 AM",
+    "majors": [
+     {
+      "code": "185",
+      "isUnitCode": false,
+      "isMajorCode": true
+     },
+     {
+      "code": "198",
+      "isUnitCode": false,
+      "isMajorCode": true
+     }
+    ],
+    "openToText": "MAJ: 185 (Cognitive Science), 198 (Computer Science); MINOR: 198 (Computer Science)",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "ZHANG, YONGFENG",
+    "minors": [
+     {
+      "code": "198"
+     }
+    ],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "3",
+      "description": "Livingston"
+     }
+    ],
+    "index": "11593",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "3",
+      "roomNumber": "A102",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1210",
+      "buildingCode": "LSH",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "1210",
+      "endTime": "0130"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "A102",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1400",
+      "buildingCode": "LSH",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1520",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0200",
+      "endTime": "0320"
+     },
+     {
+      "campusLocation": "3",
+      "roomNumber": "250",
+      "campusAbbrev": "LIV",
+      "campusName": "LIVINGSTON",
+      "startTimeMilitary": "1605",
+      "buildingCode": "BE",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1700",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "F",
+      "startTime": "0405",
+      "endTime": "0500"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "A grade below a 'C' in a prerequisite course will not satisfy prereq"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "NA",
+    "description": "N/A"
+   }
+  ],
+  "subject": "198",
+  "openSections": 60,
+  "synopsisUrl": "http://www.cs.rutgers.edu/undergraduate/courses/",
+  "title": "INDEP STUDY COMP SCI",
+  "preReqNotes": "",
+  "courseString": "01:198:493",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": null,
+  "subjectDescription": "Computer Science",
+  "coreCodes": [],
+  "expandedTitle": "INDEPENDENT STUDY IN COMPUTER SCIENCE",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "For Computer Science Special Permission Numbers to enter a closed course Do Not email instructors.  Please apply at https://www.cs.rutgers.edu/academics/undergraduate/course-registration-and-special-permission",
+  "courseNumber": "493",
+  "creditsObject": {
+   "code": "BA",
+   "description": "Credits by arrangement"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": "03",
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "AWASTHI"
+     }
+    ],
+    "number": "A2",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "AWASTHI",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "NA",
+      "description": "N/A"
+     }
+    ],
+    "index": "11641",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": "Department staff",
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "",
+      "roomNumber": "",
+      "campusAbbrev": "",
+      "campusName": "",
+      "startTimeMilitary": "",
+      "buildingCode": "",
+      "meetingModeDesc": "PROJ-IND",
+      "endTimeMilitary": "",
+      "meetingModeCode": "19",
+      "baClassHours": "B",
+      "pmCode": "",
+      "meetingDay": "",
+      "startTime": "",
+      "endTime": ""
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": "03",
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "ABELLO MONEDERO"
+     }
+    ],
+    "number": "A3",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "ABELLO MONEDERO",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "NA",
+      "description": "N/A"
+     }
+    ],
+    "index": "11642",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": "Department staff",
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "",
+      "roomNumber": "",
+      "campusAbbrev": "",
+      "campusName": "",
+      "startTimeMilitary": "",
+      "buildingCode": "",
+      "meetingModeDesc": "PROJ-IND",
+      "endTimeMilitary": "",
+      "meetingModeCode": "19",
+      "baClassHours": "B",
+      "pmCode": "",
+      "meetingDay": "",
+      "startTime": "",
+      "endTime": ""
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   }
+  ],
+  "subject": "615",
+  "openSections": 1,
+  "synopsisUrl": "https://ling.rutgers.edu/academics/undergraduate-mainmenu-139/course-descriptions",
+  "title": "SPEECH ACTS",
+  "preReqNotes": "(01:615:350 PRAGMATICS )",
+  "courseString": "01:615:420",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 3,
+  "subjectDescription": "Linguistics",
+  "coreCodes": [],
+  "expandedTitle": "SPEECH ACTS",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "420",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [
+     {
+      "courseNumber": "320",
+      "supplementCode": "  ",
+      "sectionNumber": "01",
+      "offeringUnitCampus": "NB",
+      "primaryRegistrationIndex": "12658",
+      "offeringUnitCode": "01",
+      "registrationIndex": "12659",
+      "subjectCode": "730"
+     }
+    ],
+    "sectionNotes": "IF CLOSED, CONTACT EMC233@PHILOSOPHY.RUTGERS.EDU  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "1",
+    "instructors": [
+     {
+      "name": "CAMP, ELISABETH"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/22/2026 - 0800 - 1100 AM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "CAMP, ELISABETH",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "1",
+      "description": "College Avenue"
+     }
+    ],
+    "index": "12658",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "01:730:320:01 (12659)",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "1",
+      "roomNumber": "208",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "1020",
+      "buildingCode": "MU",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "M",
+      "startTime": "1020",
+      "endTime": "1140"
+     },
+     {
+      "campusLocation": "1",
+      "roomNumber": "208",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "1020",
+      "buildingCode": "MU",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "H",
+      "startTime": "1020",
+      "endTime": "1140"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   }
+  ],
+  "subject": "615",
+  "openSections": 1,
+  "synopsisUrl": "https://ling.rutgers.edu/academics/undergraduate-mainmenu-139/course-descriptions",
+  "title": "ADV UNDERGRAD SEMINA",
+  "preReqNotes": "Any Two Course from the following: (01:615:305 SYNTAX )    (01:615:315 PHONOLOGY )    (01:615:325 SEMANTICS )    (01:615:350 PRAGMATICS )    ",
+  "courseString": "01:615:497",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 3,
+  "subjectDescription": "Linguistics",
+  "coreCodes": [],
+  "expandedTitle": "ADVANCED UNDERGRADUATE SEMINAR",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "497",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "SENIORS ONLY",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "O",
+    "specialPermissionAddCode": "14",
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "SYRETT, KRISTEN"
+     }
+    ],
+    "number": "01",
+    "finalExam": "No final exam",
+    "majors": [],
+    "openToText": "UNIT/MAJOR: 01/615 (School of Arts and Sciences / MAJ: Linguistics)",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "AT",
+      "description": "For special permission numbers, go to: https://secure.sas.rutgers.edu/apps/special_permission"
+     }
+    ],
+    "instructorsText": "SYRETT, KRISTEN",
+    "minors": [],
+    "examCodeText": "No final exam",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "1",
+      "description": "College Avenue"
+     }
+    ],
+    "index": "12667",
+    "unitMajors": [
+     {
+      "unitCode": "01",
+      "majorCode": "615"
+     }
+    ],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": "Program Director",
+    "commentsText": "For special permission numbers, go to: https://secure.sas.rutgers.edu/apps/special_permission",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "1",
+      "roomNumber": "A1",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "1020",
+      "buildingCode": "HH",
+      "meetingModeDesc": "SEM",
+      "endTimeMilitary": "1320",
+      "meetingModeCode": "04",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "F",
+      "startTime": "1020",
+      "endTime": "0120"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   },
+   {
+    "code": "2",
+    "description": "Busch"
+   },
+   {
+    "code": "3",
+    "description": "Livingston"
+   },
+   {
+    "code": "4",
+    "description": "Cook/Douglass"
+   }
+  ],
+  "subject": "640",
+  "openSections": 23,
+  "synopsisUrl": "https://math.rutgers.edu/academics/undergraduate/courses",
+  "title": "CALC I MATH/PHYS",
+  "preReqNotes": "((21:640:113 COLLEGE ALGEBRA  and 21:640:114 PRECALCULUS ) or (01:640:112 PRECALCULUS PART II ))<em> OR </em> ((50:640:113 MATH FOR BUSINESS  and 50:640:114 ) or (01:640:115 PRECALCULUS COLLEGE MATHEMATICS ))",
+  "courseString": "01:640:151",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Mathematics",
+  "coreCodes": [
+   {
+    "id": "2026901640151  23",
+    "year": "2026",
+    "term": "9",
+    "description": "Quantitative Information",
+    "code": "QQ",
+    "unit": "01",
+    "course": "151",
+    "subject": "640",
+    "lastUpdated": 1468423785000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "23",
+    "coreCode": "QQ",
+    "coreCodeDescription": "Quantitative Information"
+   },
+   {
+    "id": "2026901640151  24",
+    "year": "2026",
+    "term": "9",
+    "description": "Mathematical or Formal Reasoning",
+    "code": "QR",
+    "unit": "01",
+    "course": "151",
+    "subject": "640",
+    "lastUpdated": 1468423795000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "24",
+    "coreCode": "QR",
+    "coreCodeDescription": "Mathematical or Formal Reasoning"
+   }
+  ],
+  "expandedTitle": "CALCULUS I FOR MATHEMATICAL AND PHYSICALSCIENCES",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "MATHEMATICS INSTRUCTORS CANNOT ISSUE SPECIAL PERMISSION TO ENTER CLOSED COURSES. REQUESTS FOR SPECIAL PERMISSION MUST BE MADE BY APPLICATION TO THE MATHEMATICS DEPARTMENT.",
+  "courseNumber": "151",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "F",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "BOWLES, MALCOLM"
+     },
+     {
+      "name": "MULVEY, SALLY"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/15/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "BOWLES, MALCOLM; MULVEY, SALLY",
+    "minors": [],
+    "examCodeText": "Math",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "12932",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "116",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0830",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "0950",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "T",
+      "startTime": "0830",
+      "endTime": "0950"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "116",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0830",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "0950",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "F",
+      "startTime": "0830",
+      "endTime": "0950"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "216",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1020",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "H",
+      "startTime": "1020",
+      "endTime": "1140"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "F",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "MULVEY, SALLY"
+     },
+     {
+      "name": "BOWLES, MALCOLM"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/15/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [],
+    "instructorsText": "BOWLES, MALCOLM; MULVEY, SALLY",
+    "minors": [],
+    "examCodeText": "Math",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "2",
+      "description": "Busch"
+     }
+    ],
+    "index": "12933",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "2",
+      "roomNumber": "116",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0830",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "0950",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "T",
+      "startTime": "0830",
+      "endTime": "0950"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "116",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "0830",
+      "buildingCode": "HLL",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "0950",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "F",
+      "startTime": "0830",
+      "endTime": "0950"
+     },
+     {
+      "campusLocation": "2",
+      "roomNumber": "216",
+      "campusAbbrev": "BUS",
+      "campusName": "BUSCH",
+      "startTimeMilitary": "1210",
+      "buildingCode": "SEC",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1330",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "H",
+      "startTime": "1210",
+      "endTime": "0130"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "FOR ALL SECTIONS: NO CREDIT FOR MORE THAN ONE CALC I COURSE\r\nCREDIT NOT GIVEN FOR MORE THAN ONE: 130, 135, OR 151   \r\n\r\n"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   }
+  ],
+  "subject": "730",
+  "openSections": 1,
+  "synopsisUrl": "https://philosophy.rutgers.edu/course-descriptions",
+  "title": "ARETE - PART 1",
+  "preReqNotes": "TWO Course Within the Subject Area:",
+  "courseString": "01:730:295",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 1,
+  "subjectDescription": "Philosophy",
+  "coreCodes": [
+   {
+    "id": "2026901730295  121",
+    "year": "2026",
+    "term": "9",
+    "description": "SOE: Approved Humanities/Social Science",
+    "code": "SOEHS",
+    "unit": "01",
+    "course": "295",
+    "subject": "730",
+    "lastUpdated": 1728323919000,
+    "offeringUnitCode": "01",
+    "offeringUnitCampus": "NB",
+    "supplement": "  ",
+    "effective": "20269",
+    "coreCodeReferenceId": "121",
+    "coreCode": "SOEHS",
+    "coreCodeDescription": "SOE: Approved Humanities/Social Science"
+   }
+  ],
+  "expandedTitle": "",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "295",
+  "creditsObject": {
+   "code": "1_0",
+   "description": "1.0 credit"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "O",
+    "specialPermissionAddCode": "03",
+    "crossListedSections": [],
+    "sectionNotes": "CONTACT EDITOR FOR SPECIAL PERMISSION #  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "MCCROSSIN"
+     }
+    ],
+    "number": "01",
+    "finalExam": "No final exam",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "MCCROSSIN",
+    "minors": [],
+    "examCodeText": "No final exam",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "1",
+      "description": "College Avenue"
+     }
+    ],
+    "index": "13270",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": "Department staff",
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "1",
+      "roomNumber": "207",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "1020",
+      "buildingCode": "MU",
+      "meetingModeDesc": "PROJ-GRP",
+      "endTimeMilitary": "1140",
+      "meetingModeCode": "20",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "F",
+      "startTime": "1020",
+      "endTime": "1140"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "4",
+    "description": "Cook/Douglass"
+   }
+  ],
+  "subject": "750",
+  "openSections": 0,
+  "synopsisUrl": "http://www.physics.rutgers.edu/homes-ugcourses.shtml",
+  "title": "PHYSICS FOR SCIENCES",
+  "preReqNotes": "Any Course EQUAL or GREATER Than: (01:640:112 PRECALCULUS PART II )",
+  "courseString": "01:750:193",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 4,
+  "subjectDescription": "Physics",
+  "coreCodes": [],
+  "expandedTitle": "PHYSICS FOR THE SCIENCES",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "193",
+  "creditsObject": {
+   "code": "4_0",
+   "description": "4.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "I",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "PREREQ: 01:640:112 OR HIGHER; MUST REGISTER FOR BOTH REC AND LAB SECTION IN SAME SEMESTER. ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "GENTILE"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/18/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [],
+    "instructorsText": "GENTILE",
+    "minors": [],
+    "examCodeText": "Physics",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "13352",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "101",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1415",
+      "buildingCode": "HCK",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0215",
+      "endTime": "0310"
+     },
+     {
+      "campusLocation": "4",
+      "roomNumber": "101",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1415",
+      "buildingCode": "HCK",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0215",
+      "endTime": "0310"
+     },
+     {
+      "campusLocation": "4",
+      "roomNumber": "207",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1550",
+      "buildingCode": "HSB",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1710",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0350",
+      "endTime": "0510"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "I",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "GENTILE"
+     }
+    ],
+    "number": "02",
+    "finalExam": "12/18/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [],
+    "instructorsText": "GENTILE",
+    "minors": [],
+    "examCodeText": "Physics",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "13353",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "101",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1415",
+      "buildingCode": "HCK",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0215",
+      "endTime": "0310"
+     },
+     {
+      "campusLocation": "4",
+      "roomNumber": "101",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1415",
+      "buildingCode": "HCK",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1510",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0215",
+      "endTime": "0310"
+     },
+     {
+      "campusLocation": "4",
+      "roomNumber": "207",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1740",
+      "buildingCode": "HSB",
+      "meetingModeDesc": "RECIT",
+      "endTimeMilitary": "1900",
+      "meetingModeCode": "03",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0540",
+      "endTime": "0700"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "CREDIT NOT GIVEN FOR MORE THAN ONE OUT OF 750:203, 750:193, 750:201"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "4",
+    "description": "Cook/Douglass"
+   }
+  ],
+  "subject": "750",
+  "openSections": 0,
+  "synopsisUrl": "http://www.physics.rutgers.edu/homes-ugcourses.shtml",
+  "title": "PHYSICS FOR SCI LAB",
+  "preReqNotes": "",
+  "courseString": "01:750:193",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 0,
+  "subjectDescription": "Physics",
+  "coreCodes": [],
+  "expandedTitle": "PHYSICS FOR THE SCIENCES",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "193",
+  "creditsObject": {
+   "code": "0_0",
+   "description": "0.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "MUST REGISTER FOR BOTH REC AND LAB SECTION IN SAME SEMESTER  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "GENTILE"
+     }
+    ],
+    "number": "20",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [],
+    "instructorsText": "GENTILE",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "13361",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "207",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1550",
+      "buildingCode": "HSB",
+      "meetingModeDesc": "LAB",
+      "endTimeMilitary": "1850",
+      "meetingModeCode": "05",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0350",
+      "endTime": "0650"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "MUST REGISTER FOR BOTH A REC & A LAB TOGETHER  ",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "GENTILE"
+     }
+    ],
+    "number": "21",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [],
+    "instructorsText": "GENTILE",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "13362",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "207",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1930",
+      "buildingCode": "HSB",
+      "meetingModeDesc": "LAB",
+      "endTimeMilitary": "2230",
+      "meetingModeCode": "05",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0730",
+      "endTime": "1030"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "LB",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": "CREDIT NOT GIVEN FOR MORE THAN ONE OUT OF 750:203, 750:193, 750:201"
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "4",
+    "description": "Cook/Douglass"
+   }
+  ],
+  "subject": "920",
+  "openSections": 1,
+  "synopsisUrl": "https://sociology.rutgers.edu/academics/undergraduate/course-descriptions",
+  "title": "HONORS IN SOCIOLOGY",
+  "preReqNotes": "Any Two Course from the following: (01:920:311 SOCIAL RESEARCH METHODS )    (01:920:312 INTRODUCTION TO STATISTICS IN SOCIOLOGY )    (01:920:316 SOCIAL THEORY )    ",
+  "courseString": "01:920:497",
+  "school": {
+   "code": "01",
+   "description": "School of Arts and Sciences"
+  },
+  "credits": 3,
+  "subjectDescription": "Sociology",
+  "coreCodes": [],
+  "expandedTitle": "HONORS IN SOCIOLOGY",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "497",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "U",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "01",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "C",
+    "specialPermissionAddCode": "03",
+    "crossListedSections": [],
+    "sectionNotes": "PREREQS REQUIRED",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "MOUZON, DAWNE"
+     }
+    ],
+    "number": "01",
+    "finalExam": "12/16/2026 - 1200 - 0300 PM",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "MOUZON, DAWNE",
+    "minors": [],
+    "examCodeText": "During class hour",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "13995",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": "Department staff",
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "122",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1400",
+      "buildingCode": "DAV",
+      "meetingModeDesc": "SEM",
+      "endTimeMilitary": "1700",
+      "meetingModeCode": "04",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "T",
+      "startTime": "0200",
+      "endTime": "0500"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "4",
+    "description": "Cook/Douglass"
+   }
+  ],
+  "subject": "400",
+  "openSections": 1,
+  "synopsisUrl": "",
+  "title": "FOOD CHEMISTRY FUND",
+  "preReqNotes": "",
+  "courseString": "16:400:513",
+  "school": {
+   "code": "16",
+   "description": "The School of Graduate Studies - New Brunswick"
+  },
+  "credits": 3,
+  "subjectDescription": "Food Science",
+  "coreCodes": [],
+  "expandedTitle": "",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "513",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "G",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "16",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "PREREQ: ORGANIC CHEMISTRY",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "SCHAICH, KAREN"
+     }
+    ],
+    "number": "01",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "SCHAICH, KAREN",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "4",
+      "description": "Cook/Douglass"
+     }
+    ],
+    "index": "19370",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "4",
+      "roomNumber": "102",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1740",
+      "buildingCode": "FSW",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1900",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0540",
+      "endTime": "0700"
+     },
+     {
+      "campusLocation": "4",
+      "roomNumber": "102",
+      "campusAbbrev": "D/C",
+      "campusName": "DOUGLAS/COOK",
+      "startTimeMilitary": "1740",
+      "buildingCode": "FSW",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1900",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0540",
+      "endTime": "0700"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "1",
+    "description": "College Avenue"
+   },
+   {
+    "code": "O",
+    "description": "O"
+   }
+  ],
+  "subject": "913",
+  "openSections": 3,
+  "synopsisUrl": "",
+  "title": "CLINICAL SW I",
+  "preReqNotes": "(19:913:598 CLINICAL SOCIAL WORK (CSW) SPECIALIZATION )",
+  "courseString": "19:913:501",
+  "school": {
+   "code": "19",
+   "description": "School of Social Work"
+  },
+  "credits": 3,
+  "subjectDescription": "Social Work, Specialized/Advanced",
+  "coreCodes": [],
+  "expandedTitle": "CLINICAL SOCIAL WORK I",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "501",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "G",
+  "campusCode": "NB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "19",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "COREQ: 19:912:600",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "TERRY, NICOLE"
+     }
+    ],
+    "number": "01",
+    "finalExam": "By Arrangement",
+    "majors": [
+     {
+      "code": "19",
+      "isUnitCode": true,
+      "isMajorCode": false
+     }
+    ],
+    "openToText": "UNIT: 19 (School of Social Work)",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "TERRY, NICOLE",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "1",
+      "description": "College Avenue"
+     }
+    ],
+    "index": "21453",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "1",
+      "roomNumber": "1100",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "1800",
+      "buildingCode": "ABW",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "2100",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0600",
+      "endTime": "0900"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   },
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "COREQ: 19:912:600",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [
+     {
+      "name": "TECCHIO, BETH"
+     }
+    ],
+    "number": "02",
+    "finalExam": "By Arrangement",
+    "majors": [
+     {
+      "code": "19",
+      "isUnitCode": true,
+      "isMajorCode": false
+     }
+    ],
+    "openToText": "UNIT: 19 (School of Social Work)",
+    "openStatusText": "CLOSED",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": false,
+    "comments": [
+     {
+      "code": "05",
+      "description": "Go to http://canvas.rutgers.edu"
+     }
+    ],
+    "instructorsText": "TECCHIO, BETH",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "NB",
+    "sectionCampusLocations": [
+     {
+      "code": "1",
+      "description": "College Avenue"
+     }
+    ],
+    "index": "21454",
+    "unitMajors": [],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "Go to http://canvas.rutgers.edu",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "1",
+      "roomNumber": "2200",
+      "campusAbbrev": "CAC",
+      "campusName": "COLLEGE AVENUE",
+      "startTimeMilitary": "0830",
+      "buildingCode": "ABE",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1130",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "A",
+      "meetingDay": "T",
+      "startTime": "0830",
+      "endTime": "1130"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ },
+ {
+  "campusLocations": [
+   {
+    "code": "Z",
+    "description": "Off campus"
+   }
+  ],
+  "subject": "400",
+  "openSections": 1,
+  "synopsisUrl": "",
+  "title": "FOOD CHEMISTRY FUND",
+  "preReqNotes": "",
+  "courseString": "16:400:513",
+  "school": {
+   "code": "16",
+   "description": "The School of Graduate Studies - New Brunswick"
+  },
+  "credits": 3,
+  "subjectDescription": "Food Science",
+  "coreCodes": [],
+  "expandedTitle": "",
+  "courseFeeDescr": "",
+  "mainCampus": "NB",
+  "subjectNotes": "",
+  "courseNumber": "513",
+  "creditsObject": {
+   "code": "3_0",
+   "description": "3.0 credits"
+  },
+  "level": "G",
+  "campusCode": "OB",
+  "subjectGroupNotes": "",
+  "offeringUnitCode": "16",
+  "offeringUnitTitle": null,
+  "courseDescription": "",
+  "sections": [
+   {
+    "sectionEligibility": "",
+    "sessionDatePrintIndicator": "N",
+    "examCode": "A",
+    "specialPermissionAddCode": null,
+    "crossListedSections": [],
+    "sectionNotes": "DISTANCE LEARNING",
+    "specialPermissionDropCode": null,
+    "crossListedSectionType": "0",
+    "instructors": [],
+    "number": "85",
+    "finalExam": "By Arrangement",
+    "majors": [],
+    "openToText": "UNIT/MAJOR: 16/400 (The School of Graduate Studies - New Brunswick / MAJ: Food Science)",
+    "openStatusText": "OPEN",
+    "sessionDates": null,
+    "specialPermissionDropCodeDescription": null,
+    "subtopic": "",
+    "openStatus": true,
+    "comments": [],
+    "instructorsText": "",
+    "minors": [],
+    "examCodeText": "By arrangement",
+    "campusCode": "OB",
+    "sectionCampusLocations": [
+     {
+      "code": "Z",
+      "description": "Off campus"
+     }
+    ],
+    "index": "19371",
+    "unitMajors": [
+     {
+      "unitCode": "16",
+      "majorCode": "400"
+     }
+    ],
+    "printed": "Y",
+    "specialPermissionAddCodeDescription": null,
+    "commentsText": "",
+    "subtitle": "",
+    "crossListedSectionsText": "",
+    "sectionCourseType": "T",
+    "meetingTimes": [
+     {
+      "campusLocation": "Z",
+      "roomNumber": "",
+      "campusAbbrev": "OFF",
+      "campusName": "OFF CAMPUS",
+      "startTimeMilitary": "1740",
+      "buildingCode": "",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1900",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "M",
+      "startTime": "0540",
+      "endTime": "0700"
+     },
+     {
+      "campusLocation": "Z",
+      "roomNumber": "",
+      "campusAbbrev": "OFF",
+      "campusName": "OFF CAMPUS",
+      "startTimeMilitary": "1740",
+      "buildingCode": "",
+      "meetingModeDesc": "LEC",
+      "endTimeMilitary": "1900",
+      "meetingModeCode": "02",
+      "baClassHours": "",
+      "pmCode": "P",
+      "meetingDay": "W",
+      "startTime": "0540",
+      "endTime": "0700"
+     }
+    ],
+    "legendKey": null,
+    "honorPrograms": []
+   }
+  ],
+  "supplementCode": "  ",
+  "courseFee": "0",
+  "unitNotes": "",
+  "courseNotes": ""
+ }
+]

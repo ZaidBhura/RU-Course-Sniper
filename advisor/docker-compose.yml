@@ -1,0 +1,24 @@
+# Local database for the advisor. Separate from the sniper stack (port 5433)
+# so the two can run side by side. pgvector is included for the review and
+# course-description search coming in a later milestone.
+#
+#   docker compose -f advisor/docker-compose.yml up -d
+services:
+  advisor-db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: advisor
+      POSTGRES_PASSWORD: ${ADVISOR_DB_PASSWORD:-advisor_dev}
+      POSTGRES_DB: advisor
+    ports:
+      - "5433:5432"
+    volumes:
+      - advisor_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U advisor -d advisor"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  advisor_pg:
